@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="editor">
+        <meta name="author" content="Azarias Boutin">
+
+        <title>WeasyWig editor</title>
+
+        <!-- Existing ressources -->
+        <script src="assets/js/jquery.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/underscore.js"></script>
+        <script src="assets/js/editor/modal.js"></script>
+        <script src="assets/js/mousetrap.js"></script>
+
+        <!-- Customs scripts -->
+        <script src="assets/js/editor/weasywig.js"></script>
+        <script src="assets/js/editor/contextmenu.js"></script>
+        <script src="assets/js/editor/states.js"></script>
+        <script src="assets/js/editor/basic.js"></script>
+        <script src="assets/js/editor/component.js"></script>
+        <script src="assets/js/editor/javascript.js"></script>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/editor.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body>
+        <div id="wrapper" class="toggled" >
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <li class="sidebar-brand text-center">
+                        <h3>Add ...</h3>
+                        <hr/>
+                    </li>
+                    <li>
+                        <form id="search_form" class="form-horizontal" role="search">
+                            <div class="input-group" role="search">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                                <input autocomplete="off" id="search_block"  type="search" class="form-control" placeholder="Search">
+                            </div>
+                        </form>
+                        <hr/>
+                    </li>
+                    <li>
+                        <a id="add_row" href="javascript:void(0)" >Row</a>
+                    </li>
+                    <li>
+                        <div id="panels" class="panel-group" role="tablist" aria-multiselectable="true">
+                        </div>
+                    </li>
+                    <li>
+                        <hr/>
+                    </li>
+                    <li>
+                        <a class="remove_sidebar" href="javascript:void(0)">Nevermind...</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Floating message -->
+        <div class="text-center editor-message"></div>
+
+        <!-- Custom contextmenu -->
+        <ul id="contextMenu" class="list-group" ></ul>
+
+        <nav class="navbar navbar-default navbar-fixed-top ">
+            <div class="container-fluid">
+
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">WeasyWig editor</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="javascript:void(0)" id="save_button" >Save <span class="label label-info" >ctrl + s</span> </a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-cog"></i> Options <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" id="undo_button" >Undo <span class="label label-info" >ctrl + z</span> </a></li>
+                                <li><a href="#" id="restart_button" >Restart <span class="label label-info" >ctrl + r</span> </a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Documentation</a></li>
+                                <li><a href="./index.php">Home <span class="label label-info" >ctrl + h</span> </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active" ><a id="current_mode"> loading ... </a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Change mode <span class="caret"></span></a>
+                            <ul class="dropdown-menu" id="states_choice" ></ul>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+
+        <div class="container-fluid" id="editor_core" >
+            <!-- The editor core is here -->
+            <div class="row" id="root">
+                <div class="mainRoot available"></div>
+            </div>
+            <div class="row hidden" id="code_edition" contenteditable="true" ></div>
+        </div>
+        <script src="assets/js/editor/view.js"></script>
+    </body>
+
+</html>
