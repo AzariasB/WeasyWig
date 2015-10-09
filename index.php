@@ -43,7 +43,7 @@ foreach (new DirectoryIterator('assets/saves') as $fileInfo) {
                     <p class="lead" >
                         Here, you can manage the existing projects. You can delete them.
                         If you are a developper, and you want to create your own plugin for the editor,
-                        you can see the <a href="#">documentation</a><br/>
+                        you can see the <a href="documentation.html">documentation</a><br/>
                     </p>
                     <?php if (count($projects) > 0): ?>
                         <p class="lead" >Or you can choose one the projects below</p>
@@ -101,7 +101,7 @@ foreach (new DirectoryIterator('assets/saves') as $fileInfo) {
                 <div class="col-xs-12 col-sm-6">
                     <p class="lead text-justify">
                         We know that nothing is perfect. Morever when its about computing. So we decided to create 
-                        and easy-to-use API. You can access the API documentation just by clicking <a href="#">here</a>.<br/>
+                        and easy-to-use API. You can access the API documentation just by clicking <a href="documentation.html">here</a>.<br/>
                         This documentation will help you to understand how the editor is working. And so, if you think
                         you have enought knowledge in javascript, you can developp your own plugins to add somes elements
                         to the editor.
@@ -120,7 +120,7 @@ foreach (new DirectoryIterator('assets/saves') as $fileInfo) {
                         <img title="Mousetrap" class="img-responsive" src="assets/images/mousetrap.png" />
                         <img title="Underscore.js" class="img-responsive" src="assets/images/underscore.png"/>
                         <img title="Bootstrap" class="img-responsive" src="assets/images/bootstrap.png" /> 
-                        <img title="jQuery" class="img-responsive" src="assets/images/jqueyr.png" />
+                        <img title="jQuery" class="img-responsive" src="assets/images/jquery.png" />
                         <img title="jQueryUi" class="img-responsive" src="assets/images/jquery_ui.png" />
                     </div>
                 </div>

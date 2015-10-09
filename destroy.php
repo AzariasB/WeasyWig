@@ -7,8 +7,9 @@
  */
 
 $pjName = $_POST['projectName'];
-if (is_file("./assets/saves/$pjName")) {
-    echo json_encode(unlink("./assets/saves/$pjName"));
+$absPath = "./assets/saves/$pjName.html";
+if (is_file($absPath)) {
+    echo json_encode(unlink($absPath));
 } else {
     echo json_encode(false);
 }
