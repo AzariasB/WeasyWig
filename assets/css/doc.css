@@ -1,0 +1,30 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 4 oct. 2015, 14:06:33
+    Author     : root
+*/
+
+.container{
+    margin-top: 51px;
+}
+
+footer{
+    border-top: #333 1px solid;
+    padding-top: 50px;
+    background-color: #eee
+}
+
+@media only screen and (min-width : 768px) {
+    /* Make Navigation Toggle on Desktop Hover */
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+    
+    .dropdown:not(:hover) .dropdown-menu{
+        display: none;
+    }
+}

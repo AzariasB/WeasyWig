@@ -1,0 +1,121 @@
+
+<!--
+The editors state system
+-->
+<li class="dropdown">
+    <a href="#doc_states" class="dropdown-toggle" type="button" id="states_dp" aria-haspopup="true" aria-expanded="true">
+        Custom states
+        <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="states_dp">
+        <li><a href="#doc_states/explain">Explanation</a></li>
+        <li><a href="#doc_states/name">Give a name to your state</a></li>
+        <li><a href="#doc_states/entering">Entering function</a></li>
+        <li><a href="#doc_states/exiting">Exiting function</a></li>
+    </ul>
+</li>
+
+<div class="documentation" id="doc_states">
+    <div class="col-xs-12">
+        <h2 >Create your custom states</h2>
+        <p class="lead" >
+            Before saying anything, you have to know that the states of the editor are working on the 'finite-state machine'
+            mathematical model of computation. Of course, this one is really really simple. Here is the skecth of what
+            it looks like :
+        </p>
+        <div class="col-xs-12 text-center">
+            <img src="assets/images/states.png" />
+        </div>
+        <p>
+            Each time that the state manager change of state, the current state is warned that he's exiting,
+            and the new state is warned that he's entering. For those two cases, you'll need to create function to change
+            the main view
+        </p>
+    </div>
+    <div class="col-xs-12">
+        <h3 id="explain" >Explain the state engine</h3>
+        <p>
+            As you can see in the picture above, the first state, the begin is the editor.
+            When you arrive on the editor, it's the first view that you see.
+            All the states are finale states. That mean you can leave the editor at any moment, the current state
+            will be leaved.<br/>
+            On the edito, you can change of state, either by choosing it on the dropdown (image below) or using 
+            the keyboard shortcut <kbd>ctrl + left</kbd> or <kbd>ctrl + right</kbd>
+        </p>
+        <div class="text-center col-xs-12">
+            <img src="assets/images/dropdown.png" />
+        </div>
+        <p>
+            You can easily add more states.
+            Here are the things you have to know when creating a new state.
+        </p>
+
+    </div>
+    <div class="col-xs-12" >
+        <h3 id="name" >The state name</h3>
+        <p>
+            Let's take a look at a simple state :
+        </p>
+        <pre style='color:#000000;background:#ffffff;'><span style='color:#800080; '>{</span>
+    <span style='color:#800000; '>'</span><span style='color:#0000e6; '>name</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>Result</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span>
+    <span style='color:#800000; '>'</span><span style='color:#0000e6; '>action</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>See result</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span>
+    <span style='color:#800000; '>'</span><span style='color:#0000e6; '>entering</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> <span style='color:#800000; font-weight:bold; '>function</span> <span style='color:#808030; '>(</span>view<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span><span style='color:#808030; '>.</span><span style='color:#808030; '>.</span><span style='color:#808030; '>.</span><span style='color:#800080; '>}</span><span style='color:#808030; '>,</span>
+    <span style='color:#800000; '>'</span><span style='color:#0000e6; '>exiting</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> <span style='color:#800000; font-weight:bold; '>function</span> <span style='color:#808030; '>(</span>view<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span><span style='color:#808030; '>.</span><span style='color:#808030; '>.</span><span style='color:#808030; '>.</span><span style='color:#800080; '>}</span>
+<span style='color:#800080; '>}</span><span style='color:#808030; '>,</span>
+        </pre>
+        <p>
+            The two things to see here are the name and the action
+        </p>
+        <div class="col-xs-12 col-sm-6 text-center">
+            <img src="assets/images/dropdown_action.png" />
+            <p>
+                The string given for the key 'action' is the text displayed
+                in the dropdown
+            </p>
+        </div>
+        <div class="col-xs-12 col-sm-6 text-center">
+            <img src="assets/images/dropdown_name.png" />
+            <p>
+                The string given for the key 'name' is the text displayed
+                in the navbar when the state is active<br/>
+                When a state is active, its name is not displayed in the dropdown
+                because the user does not need to access the state where he's already in
+            </p>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <h3 id="entering" >Entering function</h3>
+        <p>
+            When a state is changing, the new one is warned that he now have the main view to work on.
+            Now lets look at a function called when entering a state
+        </p>
+        <pre style='color:#000000;background:#ffffff;'><span style='color:#800000; '>'</span><span style='color:#0000e6; '>entering</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> <span style='color:#800000; font-weight:bold; '>function</span> <span style='color:#808030; '>(</span>view<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+    view<span style='color:#808030; '>.</span>removeSidebar<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+    view<span style='color:#808030; '>.</span>changeAvailable<span style='color:#808030; '>(</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>available</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>wasAv</span><span style='color:#800000; '>'</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+    view<span style='color:#808030; '>.</span>toggleMainRoot<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+<span style='color:#800080; '>}</span><span style='color:#808030; '>,</span>
+        </pre>
+    </div>
+    <p>
+        It's a simple function. The goal of this function is to show the user an overview of his page without the 'available' 
+        divs.<br/>
+        To be able to change the view, this one is given in argument to the function.
+    </p>
+    <div class="col-xs-12">
+        <h3 id="exiting" >Exiting function</h3>
+        <p>
+            The exiting function must put everything back as before. So that at the end of the exiting function
+            the editor is looking like the beginning.
+            Then the state manager will take care of changing the state.
+            Here is the next part of the previous entering function.
+        </p>
+        <pre style='color:#000000;background:#ffffff;'><span style='color:#800000; '>'</span><span style='color:#0000e6; '>exiting</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> <span style='color:#800000; font-weight:bold; '>function</span> <span style='color:#808030; '>(</span>view<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+    view<span style='color:#808030; '>.</span>changeAvailable<span style='color:#808030; '>(</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>wasAv</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>available</span><span style='color:#800000; '>'</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+    view<span style='color:#808030; '>.</span>toggleMainRoot<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+<span style='color:#800080; '>}</span>
+        </pre>
+        <p>
+            As you can see, the class that was changed, return to normal.
+        </p>
+    </div>
+</div>

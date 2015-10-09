@@ -1,0 +1,92 @@
+
+<!--
+About the contextmenu
+-->
+<li class="dropdown">
+    <a href="#doc_ctx" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
+        Contextmenu
+        <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+        <li><a href="#doc_ctx/name">Name</a></li>
+        <li><a href="#doc_ctx/action">Action of your function</a></li>
+        <li><a href="#doc_ctx/submenu">Create a submenu in the contextmenu</a></li>
+    </ul>
+</li>
+
+<div class="documentation" id="doc_ctx" >
+    <div class="col-xs-12">
+        <h2 >Customize the contextmenu</h2>
+        <p>
+            The contextmenu is the list that is displayed when the user right-click on a created div.
+            Here is what it looks like 
+        </p>
+        <div class="text-center col-xs-12">
+            <img src="assets/images/contextmenu.png" />
+        </div>
+        <p>
+            As you can see, differents options are displayed.
+            Lets see how to add your own options to this contextmenu
+        </p>
+    </div>
+    <div class="col-xs-12">
+        <h3 id="name" >Name your action</h3>
+        <p>First, you have to give a name to your contextmenu, here's how it's done :</p>
+        <pre style='color:#000000;background:#ffffff;'><span style='color:#800080; '>{</span>
+    <span style='color:#800000; '>"</span><span style='color:#0000e6; '>name</span><span style='color:#800000; '>"</span><span style='color:#800080; '>:</span> <span style='color:#800000; '>"</span><span style='color:#0000e6; '>Edit text</span><span style='color:#800000; '>"</span><span style='color:#808030; '>,</span>
+    <span style='color:#800000; '>"</span><span style='color:#0000e6; '>action</span><span style='color:#800000; '>"</span><span style='color:#800080; '>:</span> <span style='color:#800000; font-weight:bold; '>function</span> <span style='color:#808030; '>(</span>target<span style='color:#808030; '>,</span> view<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span><span style='color:#808030; '>.</span><span style='color:#808030; '>.</span><span style='color:#808030; '>.</span><span style='color:#800080; '>}</span>
+<span style='color:#800080; '>}</span><span style='color:#808030; '>,</span>
+        </pre>
+    </div>
+    <p>
+        The value you give for the key 'name' will be the text displayed in the contextmenu
+    </p>
+    <div class="col-xs-12" >
+        <h3 id="action" >The called function</h3>
+        <p>
+            When the user will click on an option in the contextmenu, a function is called.
+            This function takes in parameter the target (where the user right-clicked) and the view.
+            The function does not need to return anything.
+        </p>
+        <pre style='color:#000000;background:#ffffff;'><span style='color:#800080; '>{</span>
+    <span style='color:#800000; '>"</span><span style='color:#0000e6; '>name</span><span style='color:#800000; '>"</span><span style='color:#800080; '>:</span> <span style='color:#800000; '>"</span><span style='color:#0000e6; '>...</span><span style='color:#800000; '>"</span><span style='color:#808030; '>,</span>
+    <span style='color:#800000; '>"</span><span style='color:#0000e6; '>action</span><span style='color:#800000; '>"</span><span style='color:#800080; '>:</span> <span style='color:#800000; font-weight:bold; '>function</span> <span style='color:#808030; '>(</span>target<span style='color:#808030; '>,</span> view<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+        <span style='color:#800000; font-weight:bold; '>var</span> options <span style='color:#808030; '>=</span> <span style='color:#800080; '>{</span>
+            <span style='color:#800000; '>'</span><span style='color:#0000e6; '>title</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> <span style='color:#800000; '>"</span><span style='color:#0000e6; '>Change text</span><span style='color:#800000; '>"</span><span style='color:#808030; '>,</span>
+            <span style='color:#800000; '>'</span><span style='color:#0000e6; '>size</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>modal-lg</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span>
+            <span style='color:#800000; '>'</span><span style='color:#0000e6; '>placehloder </span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> $<span style='color:#808030; '>(</span>target<span style='color:#808030; '>)</span><span style='color:#808030; '>.</span>text<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span>
+        <span style='color:#800080; '>}</span>
+
+        view<span style='color:#808030; '>.</span>showModal<span style='color:#808030; '>(</span>easyModal<span style='color:#808030; '>.</span>types<span style='color:#808030; '>.</span>PROMPT<span style='color:#808030; '>,</span> options<span style='color:#808030; '>,</span> <span style='color:#800000; font-weight:bold; '>function</span> <span style='color:#808030; '>(</span>modal<span style='color:#808030; '>,</span> event<span style='color:#808030; '>,</span> res<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+            $<span style='color:#808030; '>(</span>target<span style='color:#808030; '>)</span><span style='color:#808030; '>.</span>text<span style='color:#808030; '>(</span>res<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+        <span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+    <span style='color:#800080; '>}</span>
+<span style='color:#800080; '>}</span><span style='color:#808030; '>,</span>
+        </pre>
+        <p>
+            In this simple example, the function change the text of the target.
+            To do that, a prompt is shown to the user to ask him the new text, and the result is applied to the div
+            where the user right-clicked.
+        </p>
+    </div>
+    <div class="col-xs-12" >
+        <h3 id="submenu" >Contextmenus subemenu</h3>
+        <p>
+            If you want to change only a certain style, but you don't want to have
+            the contextmenu all over the page, you can create submenu, as follow.
+        </p>
+        <pre style='color:#000000;background:#ffffff;'><span style='color:#800000; '>"</span><span style='color:#0000e6; '>name</span><span style='color:#800000; '>"</span><span style='color:#800080; '>:</span> <span style='color:#800000; '>"</span><span style='color:#0000e6; '>Change border</span><span style='color:#800000; '>"</span><span style='color:#808030; '>,</span>
+            <span style='color:#800000; '>"</span><span style='color:#0000e6; '>submenu</span><span style='color:#800000; '>"</span><span style='color:#800080; '>:</span> <span style='color:#808030; '>[</span>
+                <span style='color:#800080; '>{</span>
+                    <span style='color:#800000; '>"</span><span style='color:#0000e6; '>name</span><span style='color:#800000; '>"</span><span style='color:#800080; '>:</span> <span style='color:#800000; '>"</span><span style='color:#0000e6; '>Color</span><span style='color:#800000; '>"</span><span style='color:#808030; '>,</span>
+                    <span style='color:#800000; '>"</span><span style='color:#0000e6; '>action</span><span style='color:#800000; '>"</span><span style='color:#800080; '>:</span> <span style='color:#800000; font-weight:bold; '>function</span> <span style='color:#808030; '>(</span>target<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span><span style='color:#808030; '>.</span><span style='color:#808030; '>.</span><span style='color:#808030; '>.</span><span style='color:#800080; '>}</span>
+                <span style='color:#800080; '>}</span><span style='color:#808030; '>,</span>
+        </pre>
+        <p>
+            The submenu takes in parameter an array, containing differents options, as before, with a name and
+            and action funciton.
+            You can also create submenu into submenus (but don't do that too much, it's not good for the user
+            experience)
+        </p>
+    </div>
+</div>

@@ -1,0 +1,218 @@
+
+<!--
+Documentation about creating a new block in the editor
+-->
+<li class="dropdown">
+    <a href="#doc_blocks" class="dropdown-toggle" type="button" id="block_dp" aria-haspopup="true" aria-expanded="true">
+        Custom blocks
+        <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="block_dp">
+        <li><a href="#doc_blocks/name">Name the block</a></li>
+        <li><a href="#doc_blocks/question">Ask questions to the user</a></li>
+        <li><a href="#doc_blocks/example">Example</a></li>
+    </ul>
+</li>
+
+<div class="documentation" id="doc_blocks" >
+    <div class="col-xs-12">
+        <h2 >Create your custom block</h2>
+        <p >
+            Before any explanation, you have to know that each block is 'working' thanks to bootstrap. The principal
+            block offered by bootstrap has been included in the editor. If you want to know more about what is available
+            when getting boostraps, go check out the documentation.<br/>
+            To create your own block, you just need to create a new .js file, to add it into the editor.html file
+            Here is what you must put in your file : </p>
+        <pre style='color:#000000;background:#ffffff;'><span style='color:#808030; '>(</span><span style='color:#800000; font-weight:bold; '>function</span> <span style='color:#808030; '>(</span><span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+    <span style='color:#800000; font-weight:bold; '>var</span> A_NAME <span style='color:#808030; '>=</span> <span style='color:#800080; '>{</span>
+        <span style='color:#800000; '>"</span><span style='color:#0000e6; '>name</span><span style='color:#800000; '>"</span><span style='color:#800080; '>:</span> <span style='color:#800000; '>"</span><span style='color:#0000e6; '>...</span><span style='color:#800000; '>"</span><span style='color:#808030; '>,</span>
+        <span style='color:#800000; '>"</span><span style='color:#0000e6; '>components</span><span style='color:#800000; '>"</span><span style='color:#800080; '>:</span> <span style='color:#800080; '>{</span><span style='color:#808030; '>.</span><span style='color:#808030; '>.</span><span style='color:#808030; '>.</span><span style='color:#800080; '>}</span>
+    <span style='color:#800080; '>}</span><span style='color:#800080; '>;</span>
+    Weasywig<span style='color:#808030; '>.</span>addComponent<span style='color:#808030; '>(</span>A_NAME<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+<span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+        </pre>
+        <p>
+            You can see that you must create a simple javascript object.
+            And at the end of your file, you just add your component to the main controller : weasywig.
+            You can see that you have to give a name to your block. The name you give to the object will be the text
+            displayed in the accordion. Like this : <img src="assets/images/block_name.png" class="img-responsive" />
+            And so, you'll have a base for your block set.
+        </p>
+    </div>
+    <div class="col-xs-12">
+        <h3 id="name" >Give a name to the block</h3>
+        <p>
+            Now, lets take a look at a part of the "components" object we have :
+        </p>
+        <pre style='color:#000000;background:#ffffff;'><span style='color:#800000; '>"</span><span style='color:#0000e6; '>image</span><span style='color:#800000; '>"</span><span style='color:#800080; '>:</span> <span style='color:#800080; '>{</span>
+  <span style='color:#800000; '>"</span><span style='color:#0000e6; '>name</span><span style='color:#800000; '>"</span><span style='color:#800080; '>:</span> <span style='color:#800000; '>"</span><span style='color:#0000e6; '>Picture</span><span style='color:#800000; '>"</span><span style='color:#808030; '>,</span>
+  <span style='color:#800000; '>"</span><span style='color:#0000e6; '>questions</span><span style='color:#800000; '>"</span><span style='color:#800080; '>:</span> <span style='color:#808030; '>[</span><span style='color:#808030; '>.</span><span style='color:#808030; '>.</span><span style='color:#808030; '>.</span><span style='color:#808030; '>]</span>
+<span style='color:#800080; '>}</span>
+        </pre>
+        <p>
+            First, you have to give a key to you object, this key is not really important, you can choose wathever you
+            want, the key will not be displayed.
+            We now have twho keys in our object. The first key is the name of the block, the string you'll put as value
+            will be displayed in the editor as below :
+        </p>
+        <div class="col-xs-12 text-center">
+            <img src="assets/images/el_name.png"/>
+        </div>
+    </div>
+    <div class="col-xs-12" >
+        <h3 id="question" >Questions</h3>
+        <p>
+            Now that we saw the easy part, lets take a look at the core of the block.
+            Before the user add any block, it's possible to ask him informations about how he wants his block to be.
+            Lets continue with the image exemple and look at the question :
+        </p>
+        <pre style='color:#000000;background:#ffffff;'><span style='color:#800000; '>"</span><span style='color:#0000e6; '>questions</span><span style='color:#800000; '>"</span><span style='color:#800080; '>:</span> <span style='color:#808030; '>[</span><span style='color:#800000; font-weight:bold; '>function</span> <span style='color:#808030; '>(</span><span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+    <span style='color:#800000; font-weight:bold; '>return</span> <span style='color:#800080; '>{</span>
+        <span style='color:#800000; '>'</span><span style='color:#0000e6; '>type</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> easyModal<span style='color:#808030; '>.</span>types<span style='color:#808030; '>.</span>TEXTNDROPDOWN<span style='color:#808030; '>,</span>
+        <span style='color:#800000; '>'</span><span style='color:#0000e6; '>options</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> <span style='color:#800080; '>{</span>
+            title<span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>Image</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span>
+            textLabel<span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span>
+            <span style='color:#797997; '>input</span><span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>url</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span>
+            selectLabel<span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>Picture size</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span>
+            selectVal<span style='color:#800080; '>:</span> Weasywig<span style='color:#808030; '>.</span>pictureSize
+        <span style='color:#800080; '>}</span><span style='color:#808030; '>,</span>
+        <span style='color:#800000; '>'</span><span style='color:#0000e6; '>callback</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> <span style='color:#800000; font-weight:bold; '>function</span> <span style='color:#808030; '>(</span>modal<span style='color:#808030; '>,</span> event<span style='color:#808030; '>,</span> url<span style='color:#808030; '>,</span> sIndex<span style='color:#808030; '>,</span> size<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+            <span style='color:#800000; font-weight:bold; '>var</span> text <span style='color:#808030; '>=</span> $<span style='color:#808030; '>(</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>&lt;img/></span><span style='color:#800000; '>'</span><span style='color:#808030; '>)</span>
+                    <span style='color:#808030; '>.</span>attr<span style='color:#808030; '>(</span><span style='color:#800080; '>{</span>src<span style='color:#800080; '>:</span> url<span style='color:#800080; '>}</span><span style='color:#808030; '>)</span>
+                    <span style='color:#808030; '>.</span>addClass<span style='color:#808030; '>(</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>image-responsive </span><span style='color:#800000; '>'</span> <span style='color:#808030; '>+</span> <span style='color:#808030; '>(</span>Weasywig<span style='color:#808030; '>.</span>stringToSize<span style='color:#808030; '>(</span>size<span style='color:#808030; '>)</span><span style='color:#808030; '>)</span> <span style='color:#808030; '>||</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>col-xs-6</span><span style='color:#800000; '>'</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+            <span style='color:#800000; font-weight:bold; '>return</span> <span style='color:#800080; '>{</span>
+                <span style='color:#800000; '>'</span><span style='color:#0000e6; '>DOM</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> text
+            <span style='color:#800080; '>}</span><span style='color:#800080; '>;</span>
+
+        <span style='color:#800080; '>}</span>
+    <span style='color:#800080; '>}</span><span style='color:#800080; '>;</span>
+<span style='color:#800080; '>}</span><span style='color:#808030; '>]</span><span style='color:#808030; '>,</span>
+        </pre>
+        <p>
+            The questions are an array of function. In this case, we only need one function.
+            But in most complex case, you can have several questions to ask to the user.<br/>
+            Because it's the first question, there are no parameters, if it was the second or third question,
+            there will be a single parameter corresponding to the data returned by the callback of the previous function.<br/>
+            The function must return an object. Each function equals one question.
+            And the only way to ask question to the user, in this case, is to show him a modal.
+            So, the informations to return are informations about the modal that must be displayed.
+            For more informations about the possibilities with easyModal, see <a href="#doc_em">the documentation</a>
+            Now, lets take a look at the informations you must return :
+        </p>
+        <ul class="list-group list-unstyled" >
+            <li class="list-group-item" >
+                <h5>The type</h5>
+                easyModal offers different types of modals, you can choose the type of modal to show to the user.
+                Each type of modal can take differents options as parameters
+            </li>
+            <li class="list-group-item" >
+                <h5>The options</h5>
+                some options when you show your modal, some are required, some are optionals. Once more, see the
+                easyModal documentation for more.
+            </li>
+            <li class="list-group-item" >
+                <h5>The callback</h5>
+                When the user submitted the modal, your function is called to validated the data the user gave.
+                If the informations are not correct, you can prevent the event. (<code>event.preventDefault()</code>)
+                or throw an error. If you throw an error, the message will be displayed in a pop-up and inform
+                the user of what is wrong.<br/>
+                The two first elements of the callback will always be the same : the modal that has been submitted
+                and the event.<br/>
+                All the others argument depends on what type of modal you choose before.
+                For example, if you chose a simple prompt, their will be be a third argument, corresponding to the 
+                value the user gave.
+                In your function, you can handle the data you received, and then return a result. You can return
+                different types of result :
+                <ul class="list-group list-unstyled" >
+                    <li class="list-group-item" >
+                        <code>{"DOM" : a_dom_object}</code><br/>
+                        if you return this simple object, it will be added directly to the 'available' area where
+                        the user clicked
+                    </li>
+                    <li class="list-group-item" >
+                        <code>{"DOM" : a_dom_object,"templatePath": "html_filename"}</code><br/>
+                        If you return this object, the controller will search for the HTML file  "html_filename".html
+                        then it will look for the parent div, and add the dom_object into the parent div.
+                        And then, the whole div will be added to the area where the user clicked. 
+                    </li>
+                    <li class="list-group-item" >
+                        <code>{"DOM" : dom, "templatePath" : "fileName","generator":function(file){}}</code><br/>
+                        Sometimes, the generation is more complicated than just add an element into another.
+                        So you can create your own generation function to create the good elements.
+                        At the end, the function must return the final DOM object. This object will be added to
+                        the available area where the user clicked
+                    </li>
+                    <li class="list-group-item" >
+                        <code>{"data" : some_data}</code><br/>
+                        If there are more than one question, you can return some informations so that the next question
+                        can have the previous informations if needed.
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <p>Now, you can create your first block, you have all the necessary elements to create one !</p>
+    </div>
+    <div class="col-xs-12">
+        <h3 id="example" >Full Example</h3>
+        <p>Here is the most complex object of the editor, you can use it as an exemple</p>  
+        <pre style='color:#000000;background:#ffffff;'><span style='color:#800000; '>"</span><span style='color:#0000e6; '>carousel</span><span style='color:#800000; '>"</span><span style='color:#800080; '>:</span> <span style='color:#800080; '>{</span>
+    <span style='color:#800000; '>"</span><span style='color:#0000e6; '>name</span><span style='color:#800000; '>"</span><span style='color:#800080; '>:</span> <span style='color:#800000; '>"</span><span style='color:#0000e6; '>Carousel</span><span style='color:#800000; '>"</span><span style='color:#808030; '>,</span>
+    <span style='color:#800000; '>"</span><span style='color:#0000e6; '>possibleParent</span><span style='color:#800000; '>"</span><span style='color:#800080; '>:</span> <span style='color:#800000; '>"</span><span style='color:#0000e6; '>*</span><span style='color:#800000; '>"</span><span style='color:#808030; '>,</span>
+    <span style='color:#800000; '>"</span><span style='color:#0000e6; '>template</span><span style='color:#800000; '>"</span><span style='color:#800080; '>:</span> <span style='color:#800000; '>"</span><span style='color:#0000e6; '>carousel</span><span style='color:#800000; '>"</span><span style='color:#808030; '>,</span>
+    <span style='color:#800000; '>"</span><span style='color:#0000e6; '>questions</span><span style='color:#800000; '>"</span><span style='color:#800080; '>:</span> <span style='color:#808030; '>[</span><span style='color:#800000; font-weight:bold; '>function</span> <span style='color:#808030; '>(</span><span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+            <span style='color:#800000; font-weight:bold; '>return</span> <span style='color:#800080; '>{</span>
+                <span style='color:#800000; '>'</span><span style='color:#0000e6; '>type</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> easyModal<span style='color:#808030; '>.</span>types<span style='color:#808030; '>.</span>PROMPT<span style='color:#808030; '>,</span>
+                <span style='color:#800000; '>'</span><span style='color:#0000e6; '>options</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> <span style='color:#800080; '>{</span>
+                    <span style='color:#800000; '>'</span><span style='color:#0000e6; '>input</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>number</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span>
+                    <span style='color:#800000; '>'</span><span style='color:#0000e6; '>title</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>Number of slides ? (max 10)</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span>
+                    <span style='color:#800000; '>'</span><span style='color:#0000e6; '>size</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>modal-sm</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span>
+                    <span style='color:#800000; font-weight:bold; '>min</span> <span style='color:#800080; '>:</span> <span style='color:#008c00; '>1</span><span style='color:#808030; '>,</span>
+                    <span style='color:#800000; font-weight:bold; '>max</span> <span style='color:#800080; '>:</span> <span style='color:#008c00; '>10</span>
+                <span style='color:#800080; '>}</span>
+            <span style='color:#800080; '>}</span><span style='color:#800080; '>;</span>
+        <span style='color:#800080; '>}</span><span style='color:#808030; '>,</span> <span style='color:#800000; font-weight:bold; '>function</span> <span style='color:#808030; '>(</span>slides<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+            <span style='color:#800000; font-weight:bold; '>var</span> inputs <span style='color:#808030; '>=</span> <span style='color:#800000; '>'</span><span style='color:#800000; '>'</span><span style='color:#800080; '>;</span>
+            _<span style='color:#808030; '>.</span>each<span style='color:#808030; '>(</span>_<span style='color:#808030; '>.</span>range<span style='color:#808030; '>(</span>slides<span style='color:#808030; '>)</span><span style='color:#808030; '>,</span> <span style='color:#800000; font-weight:bold; '>function</span> <span style='color:#808030; '>(</span><span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+                inputs <span style='color:#808030; '>+=</span> $<span style='color:#808030; '>(</span>easyModal<span style='color:#808030; '>.</span>templates<span style='color:#808030; '>.</span>inputs<span style='color:#808030; '>.</span>url<span style='color:#808030; '>)</span><span style='color:#808030; '>.</span>attr<span style='color:#808030; '>(</span><span style='color:#800080; '>{</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>value</span><span style='color:#800000; '>'</span> <span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>http://img01.deviantart.net/7961/i/2009/339/c/1/minimal_dark_wallpaper_by_zeconcept.jpg</span><span style='color:#800000; '>'</span><span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#808030; '>[</span><span style='color:#008c00; '>0</span><span style='color:#808030; '>]</span><span style='color:#808030; '>.</span>outerHTML<span style='color:#800080; '>;</span>
+            <span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+
+            <span style='color:#800000; font-weight:bold; '>return</span> <span style='color:#800080; '>{</span>
+                <span style='color:#800000; '>'</span><span style='color:#0000e6; '>type</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> easyModal<span style='color:#808030; '>.</span>types<span style='color:#808030; '>.</span>CUSTOM<span style='color:#808030; '>,</span>
+                <span style='color:#800000; '>'</span><span style='color:#0000e6; '>options</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> <span style='color:#800080; '>{</span>
+                    <span style='color:#800000; '>'</span><span style='color:#0000e6; '>title</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>picture url of each slides</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span>
+                    <span style='color:#800000; '>'</span><span style='color:#0000e6; '>content</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> inputs
+                <span style='color:#800080; '>}</span><span style='color:#808030; '>,</span>
+                <span style='color:#800000; '>'</span><span style='color:#0000e6; '>callback</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> <span style='color:#800000; font-weight:bold; '>function</span> <span style='color:#808030; '>(</span>modal<span style='color:#808030; '>,</span> event<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+                    <span style='color:#800000; font-weight:bold; '>var</span> imgs <span style='color:#808030; '>=</span> <span style='color:#808030; '>[</span><span style='color:#808030; '>]</span><span style='color:#800080; '>;</span>
+                    _<span style='color:#808030; '>.</span>each<span style='color:#808030; '>(</span>$<span style='color:#808030; '>(</span>modal<span style='color:#808030; '>)</span><span style='color:#808030; '>.</span>find<span style='color:#808030; '>(</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>.easyModal-input</span><span style='color:#800000; '>'</span><span style='color:#808030; '>)</span><span style='color:#808030; '>,</span> <span style='color:#800000; font-weight:bold; '>function</span> <span style='color:#808030; '>(</span><span style='color:#797997; '>input</span><span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+                        imgs<span style='color:#808030; '>.</span>push<span style='color:#808030; '>(</span>$<span style='color:#808030; '>(</span><span style='color:#797997; '>input</span><span style='color:#808030; '>)</span><span style='color:#808030; '>.</span>val<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+                    <span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+                    <span style='color:#800000; font-weight:bold; '>var</span> self <span style='color:#808030; '>=</span> JS<span style='color:#808030; '>.</span>components<span style='color:#808030; '>.</span>carousel<span style='color:#800080; '>;</span>
+                    <span style='color:#800000; font-weight:bold; '>return</span> <span style='color:#800080; '>{</span>
+                        <span style='color:#800000; '>'</span><span style='color:#0000e6; '>templatePath</span><span style='color:#800000; '>'</span> <span style='color:#800080; '>:</span> self<span style='color:#808030; '>.</span>template<span style='color:#808030; '>,</span>
+                        <span style='color:#800000; '>'</span><span style='color:#0000e6; '>generator</span><span style='color:#800000; '>'</span> <span style='color:#800080; '>:</span> <span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>xml<span style='color:#808030; '>)</span><span style='color:#800080; '>{</span>
+                            <span style='color:#800000; font-weight:bold; '>var</span> $el <span style='color:#808030; '>=</span> $<span style='color:#808030; '>(</span>xml<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+                            <span style='color:#800000; font-weight:bold; '>var</span> $baseItem <span style='color:#808030; '>=</span> $el<span style='color:#808030; '>.</span>find<span style='color:#808030; '>(</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>.item</span><span style='color:#800000; '>'</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+                            <span style='color:#800000; font-weight:bold; '>var</span> $container <span style='color:#808030; '>=</span> $el<span style='color:#808030; '>.</span>find<span style='color:#808030; '>(</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>.carousel-inner</span><span style='color:#800000; '>'</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+                            <span style='color:#800000; font-weight:bold; '>var</span> $ol <span style='color:#808030; '>=</span> $el<span style='color:#808030; '>.</span>find<span style='color:#808030; '>(</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>.carousel-indicators</span><span style='color:#800000; '>'</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+                            _<span style='color:#808030; '>.</span>each<span style='color:#808030; '>(</span>imgs<span style='color:#808030; '>,</span><span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>url<span style='color:#808030; '>,</span><span style='color:#797997; '>index</span><span style='color:#808030; '>)</span><span style='color:#800080; '>{</span>
+                                <span style='color:#800000; font-weight:bold; '>var</span> first <span style='color:#808030; '>=</span> <span style='color:#797997; '>index</span> <span style='color:#808030; '>===</span> <span style='color:#008c00; '>0</span><span style='color:#800080; '>;</span>
+                                <span style='color:#800000; font-weight:bold; '>var</span> $li <span style='color:#808030; '>=</span> $<span style='color:#808030; '>(</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>&lt;li data-target="#weasywig-carousel" data-slide-to="</span><span style='color:#800000; '>'</span> <span style='color:#808030; '>+</span> <span style='color:#797997; '>index</span> <span style='color:#808030; '>+</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>">&lt;/li></span><span style='color:#800000; '>'</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+                                first <span style='color:#808030; '>&amp;&amp;</span> $li<span style='color:#808030; '>.</span>addClass<span style='color:#808030; '>(</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>active</span><span style='color:#800000; '>'</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+                                $ol<span style='color:#808030; '>.</span>append<span style='color:#808030; '>(</span>$li<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+                                <span style='color:#800000; font-weight:bold; '>var</span> $<span style='color:#800000; font-weight:bold; '>item</span> <span style='color:#808030; '>=</span> $baseItem<span style='color:#808030; '>.</span>clone<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+                                first <span style='color:#808030; '>&amp;&amp;</span> $<span style='color:#800000; font-weight:bold; '>item</span><span style='color:#808030; '>.</span>addClass<span style='color:#808030; '>(</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>active</span><span style='color:#800000; '>'</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+                                $<span style='color:#800000; font-weight:bold; '>item</span><span style='color:#808030; '>.</span>find<span style='color:#808030; '>(</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>.carousel-image</span><span style='color:#800000; '>'</span><span style='color:#808030; '>)</span><span style='color:#808030; '>.</span>attr<span style='color:#808030; '>(</span><span style='color:#800080; '>{</span>src <span style='color:#800080; '>:</span> url<span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+                                $container<span style='color:#808030; '>.</span>append<span style='color:#808030; '>(</span>$<span style='color:#800000; font-weight:bold; '>item</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+                            <span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+                            $el<span style='color:#808030; '>.</span>find<span style='color:#808030; '>(</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>.item</span><span style='color:#800000; '>'</span><span style='color:#808030; '>)</span><span style='color:#808030; '>.</span>first<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#808030; '>.</span>remove<span style='color:#808030; '>(</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+                            <span style='color:#800000; font-weight:bold; '>return</span> $el<span style='color:#808030; '>[</span><span style='color:#008c00; '>0</span><span style='color:#808030; '>]</span><span style='color:#800080; '>;</span>
+                        <span style='color:#800080; '>}</span>
+                    <span style='color:#800080; '>}</span><span style='color:#800080; '>;</span>
+                <span style='color:#800080; '>}</span>
+            <span style='color:#800080; '>}</span><span style='color:#800080; '>;</span>
+        <span style='color:#800080; '>}</span><span style='color:#808030; '>]</span>
+<span style='color:#800080; '>}</span>
+        </pre>
+    </div>
+</div>

@@ -1,0 +1,117 @@
+
+<!--
+The 'introduction' of the documentation
+-->
+<li class="dropdown">
+    <a href="#doc_general" class="dropdown-toggle" type="button" id="gen_dp"  aria-haspopup="true" aria-expanded="true">
+        General informations
+        <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="gen_dp">
+        <li><a href="#doc_general/architecture">Architecture</a></li>
+        <li><a href="#doc_general/librairies">Librairies</a></li>
+        <li><a href="#doc_general/dependencies">Dependencies</a></li>
+    </ul>
+</li>
+
+<div class="documentation" id="doc_general" >
+    <div class="col-xs-12">
+        <h2 id="general_informations" >General informations</h2>
+        <p class="lead" >
+            Here's the official documentation of the Weasywig editor. You have to read it carefully if you want to developp your own modules for this
+            editor. The documentation is diveded into differents parts, each corresponding to an aspect of the editor.
+            If you create your own module or change a library or add a custom block, I strongly recommand to add what you did in the documentation,
+            so that the next users can work with what you did.<br/>
+            This documentation is made for the developper who wants to improve the editor. Is you're a simple user who wants to know how to create
+            a page with the editor, you can go an the 'help' section of the editor.<br/>
+            In this part of the documentation, we'll talk about the global working of the editor. So that you understand how the core is working.
+            And if needed, you will be able to improve it.<br/>
+            Good reading !
+        </p>
+    </div>
+    <div class="col-xs-12">
+        <h3 id="architecture" >Architecture</h3>
+        <p>
+            The editor have an MVC architectural pattern. MVC stands for Model-view-controller.
+            The model is the data-storage part.
+            The view correspond to the display and the users interaction.
+            And the controller is working with both the model and the view to display the good informations and modify it when needed.
+        </p>
+        <ul class="list-group list-unstyled" >
+            <li class="list-group-item" >
+                <h5>The controller</h5>
+                <p>
+                    There is a main controller for the editor. This controller is called 'Weasywig', you'll find the main function of the editor on it
+                </p>
+            </li>
+            <li class="list-group-item" >
+                <h5>The View</h5>
+                <p>
+                    There is a view. The view is simply called 'view.js'. In the view, there are all the events listeners and the function to interact with the DOM object
+                    If you want to show a modal, hide a div or interact with the DOM, you have to pass by the view. Either you can add a function
+                    in the views prototype or you can call a function that return a DOM object and then interact with this object.
+                </p>
+            </li>
+            <li class="list-group-item" >
+                <h5>The Model</h5>
+                <p>
+                    There is not a unique model object. The model is composed with the differents '.js' files containing informations for the controller
+                    Then, this data is giver to the controller, who can manipulate it, and/or give access to the view.
+                </p>
+            </li>
+        </ul>
+        <p>
+            Here's a sketch to help you undrestand how the editor architectural pattern is working.
+            <img src='assets/images/mvc.png' class="img-responsive" />
+        </p>
+    </div>
+    <div class="col-xs-12" >
+        <h3 id="librairies" >Librairies</h3>
+        <p>
+            To help you improve the editor, some librarires are at your disposal.
+            The main library is the <a href="#doc_em">easyModal</a> one.
+            Others are not really librairies, it's more plugins. Like the <a href="#doc_ctx">contextmenu</a>
+            and the <a href="#doc_states">states manager</a> ones.<br/>
+            The easyModal library is a set of function to easyly create usefull modals.<br/>
+            The contextmenu plugin, is to customize the contextmenu wich is displayed when the user righ-cick
+            on an element on the editor<br/>
+            The states manager plugin let you create accessible states to navigate to when you're editing your page.
+        </p>
+    </div>
+    <div class="col-xs-12">
+        <h3 id="dependencies" >Dependencies</h3>
+        <p>
+            The project require some basics css and js librairies.
+            Of course, these libraires allready are in the project.
+        </p>
+        <ul class="list-group list-unstyled" >
+            <li class="list-group-item" >
+                First of all, and the main dependency is the <a href="https://jquery.com/" target='_blank'>jQuery</a>
+                library. <strong>The minimum version must be 1.9</strong>
+            </li>
+            <li class="list-group-item">
+                To create some nice visual features, <a href="https://jqueryui.com/" target="_blank" >jQuery UI</a>
+                is a very usefull js/css library which is used in this project.
+            </li>
+            <li class="list-group list-group-item" >
+                Then to have a good css base, the well-known css framework <a href="http://getbootstrap.com/" target="_blank" >bootstrap</a>
+                is necessary. <strong>The minimum used version must be 3.0</strong>
+            </li>
+            <li class="list-group list-group-item" >
+                To be able to do basic data-processing, the editor is using <a href="http://underscorejs.org/" target="_blank">underscore.js</a>
+                this library offers a lot of usefull functions, and the documentation is really well-made.
+                You can check the existing function if you need some of thems during the creation of modules
+            </li>
+            <li class="list-group list-group-item" > 
+                You've certainly saw that it's possible to use keyboard shorcuts in the editor.
+                The handle of these shortcuts is made thanks to  <a href="https://craig.is/killing/mice" target="_blank">mousetrap</a>
+                this is a great library to handle keyboard inputs.
+            </li>
+        </ul>
+        <p>
+           Make sure to have all those library if the project is not working.
+           If you're sure you've got them all, be carefull about the versions you're using.
+           And if its still not working, even if you have the good versions, please contact us (see homepage)
+        </p>
+    </div>
+</div>

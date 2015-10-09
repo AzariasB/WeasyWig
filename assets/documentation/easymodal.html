@@ -1,0 +1,294 @@
+
+<!--
+How to use easyModal librairy
+-->
+<li class="dropdown">
+    <a href="#doc_em" class="dropdown-toggle" type="button" id="em_dp" aria-haspopup="true" aria-expanded="true">
+        Using easyModal
+        <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="em_dp">
+        <li><a href="#doc_em/types">The differents types easyModal offers</a></li>
+        <li class="dropdown-header" >Types</li>
+        <li><a href="#doc_em/alert">Alert</a></li>
+        <li><a href="#doc_em/confirm">Confirm</a></li>
+        <li><a href="#doc_em/prompt">Prompt</a></li>
+        <li><a href="#doc_em/select">Select</a></li>
+        <li><a href="#doc_em/textNarea">Text and Textarea</a></li>
+        <li><a href="#doc_em/textNselect">Text and Select</a></li>
+        <li><a href="#doc_em/custom">Custom</a></li>
+    </ul>
+</li>
+
+<div class="documentation" id="doc_em" >
+    <div class="col-xs-12">
+        <h2 >How to use easyModal</h2>
+        <p class="lead" >
+            EasyModal is a little library made by weasywig to create a better interaction with the user.
+            The aim of this library is to easily create modals to ask questions to the user, such as a simple text,
+            a confirmation.<br/>
+            For each types, differents options can be given, and the function return differents results.
+            In this documentation, you will find what options you can give for each types, and what values
+            are returned.
+        </p>
+        <div class="col-xs-12 text-center">
+            <img src="assets/images/modal.png" class="img-thumbnail" />
+            <p>An example of simple modal</p>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <h3 id="types" >EasyModal types</h3>
+        <p>
+            Here is the list of the existing types of modals
+            that easyModal offers :
+        </p>
+        <div class="btn-group btn-group-justified" >
+            <a class="btn btn-default" href="#doc_em/alert">Alert</a>
+            <a class="btn btn-default" href="#doc_em/confirm">Confirm</a>
+            <a class="btn btn-default" href="#doc_em/prompt">Prompt</a>
+            <a class="btn btn-default" href="#doc_em/textNarea">Text and textarea</a>
+            <a class="btn btn-default" href="#doc_em/textNselect">Text and select</a>
+            <a class="btn btn-default" href="#doc_em/custom">Custom</a>
+        </div>
+        <p>
+            Whatever the type of modal you choose, the callback function will always have two arguments : <br/> 
+            <strong>modal</strong> the DOM object of the modal <br/>
+            <strong>event</strong> an object containing the submit event, and an object containing the hide event
+        </p>
+    </div>
+    <div class="col-xs-12" >
+        <h3 id="alert" >Alert</h3>
+        <p>
+            The aim of this modal is just to aware the user of something, the user cannot give informations
+            with this modal.
+        </p>
+        <div class="col-xs-12">
+            <p><strong>Type name : </strong><code> easyModal.types.ALERT</code>  </p>
+        </div>
+        <div class="col-xs-12">
+            <h4>Usage</h4>
+            <pre style='color:#000000;background:#ffffff;'>easyModal<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>alert</span><span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>This is an alert</span><span style='color:#800000; '>"</span><span style='color:#808030; '>,</span><span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>modal<span style='color:#808030; '>,</span>event<span style='color:#808030; '>)</span><span style='color:#800080; '>{</span>
+    console<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>log</span><span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>end alert</span><span style='color:#800000; '>"</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+<span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+            </pre>
+        </div>
+        <div class="col-xs-12">
+            <h4>Return values</h4>
+            <p>None, except the two default values modal and event</p>
+        </div>
+        <div class="col-xs-12">
+            <h4>Result</h4>
+            <img src="assets/images/alert.png" class="img-thumbnail" />
+        </div>
+    </div>
+    <div class="col-xs-12" >
+        <h3 id="confirm" >Confirm</h3>
+        <p>
+            This modal is used to ask a user to confirm an action (Like the <code>window.confirm()</code>) with
+            the difference that calling the <code>easyModal.cnofirm</code> will not stop the script from running.
+        </p>
+        <div class="col-xs-12">
+            <p><strong>Type name :</strong><code> easyModal.types.CONFIRM</code></p>            
+        </div>
+        <div class="col-xs-12">
+            <h4>Usage</h4>
+            <pre style='color:#000000;background:#ffffff;'><span style='color:#696969; '>//Usage</span>
+easyModal<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>confirm</span><span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>Are your sure ?</span><span style='color:#800000; '>"</span><span style='color:#808030; '>,</span><span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>modal<span style='color:#808030; '>,</span>event<span style='color:#808030; '>,</span>confirmed<span style='color:#808030; '>)</span><span style='color:#800080; '>{</span>
+    confirmed <span style='color:#800080; '>?</span> console<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>log</span><span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>So you're sure</span><span style='color:#800000; '>"</span><span style='color:#808030; '>)</span> <span style='color:#800080; '>:</span> console<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>log</span><span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>ok let's cancel'</span><span style='color:#800000; '>"</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+<span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+<span style='color:#696969; '>//or</span>
+easyModal<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>confirm</span><span style='color:#808030; '>(</span><span style='color:#800080; '>{</span>
+    title <span style='color:#800080; '>:</span> <span style='color:#800000; '>"</span><span style='color:#0000e6; '>Are you sure ?</span><span style='color:#800000; '>"</span><span style='color:#808030; '>,</span> <span style='color:#696969; '>//The main title of the modal</span>
+    text <span style='color:#800080; '>:</span> <span style='color:#800000; '>"</span><span style='color:#0000e6; '>Do you really want to delete this ?</span><span style='color:#800000; '>"</span> <span style='color:#696969; '>//The text to display in the modal body</span>
+<span style='color:#800080; '>}</span><span style='color:#808030; '>,</span><span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>modal<span style='color:#808030; '>,</span>event<span style='color:#808030; '>,</span>confirmed<span style='color:#808030; '>)</span><span style='color:#800080; '>{</span>
+    confirmed <span style='color:#800080; '>?</span> console<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>log</span><span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>Ok, lets delete it</span><span style='color:#800000; '>"</span><span style='color:#808030; '>)</span> <span style='color:#800080; '>:</span> console<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>log</span><span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>So we dont delete</span><span style='color:#800000; '>"</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+<span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+            </pre>
+        </div>
+        <div class="col-xs-12">
+            <h4>Return values</h4>
+            <p><strong>confirmed : </strong> this third argument is a boolean. Which is true if the user clicked 'ok' and false
+                if the user clicked 'cancel'
+            </p>
+        </div>
+        <div class="col-xs-12">
+            <h4>Result</h4>
+            <img class="img-thumbnail" src="assets/images/confirm.png" />
+        </div>
+
+    </div>
+    <div class="col-xs-12" >
+        <h3 id="prompt" >Prompt</h3>
+        <p>
+            This modal contain a single input of text type. To ask the user a single string. Its the same as
+            <code>window.prompt()</code> with the difference that the script is not stopped.
+        </p>
+        <div class="col-xs-12">
+            <p><strong>Type name : </strong><code> easyModal.types.PROMPT</code></p>
+        </div>
+        <div class="col-xs-12">
+            <h4>Usage</h4>
+            <pre style='color:#000000;background:#ffffff;'><span style='color:#696969; '>//Easy way</span>
+easyModal<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>prompt</span><span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>How old are you ?</span><span style='color:#800000; '>"</span><span style='color:#808030; '>,</span> <span style='color:#800000; font-weight:bold; '>function</span> <span style='color:#808030; '>(</span>modal<span style='color:#808030; '>,</span> event<span style='color:#808030; '>,</span> age<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+    console<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>log</span><span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>So you tell me you're'</span><span style='color:#800000; '>"</span> <span style='color:#808030; '>+</span> age<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+<span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+<span style='color:#696969; '>//or custom way</span>
+easyModal<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>prompt</span><span style='color:#808030; '>(</span><span style='color:#800080; '>{</span>
+    <span style='color:#800000; '>'</span><span style='color:#0000e6; '>title</span><span style='color:#800000; '>'</span> <span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>How old are you ?</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span> <span style='color:#696969; '>//title of the input</span>
+    <span style='color:#800000; '>'</span><span style='color:#0000e6; '>input</span><span style='color:#800000; '>'</span> <span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>number</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span> <span style='color:#696969; '>//The type of the input</span>
+    <span style='color:#800000; '>'</span><span style='color:#0000e6; '>placeholder</span><span style='color:#800000; '>'</span> <span style='color:#800080; '>:</span> <span style='color:#008c00; '>20</span><span style='color:#808030; '>,</span>
+    <span style='color:#800000; '>'</span><span style='color:#0000e6; '>min</span><span style='color:#800000; '>'</span> <span style='color:#800080; '>:</span> <span style='color:#008c00; '>0</span><span style='color:#808030; '>,</span> <span style='color:#696969; '>//The min value the user can submit</span>
+    <span style='color:#800000; '>'</span><span style='color:#0000e6; '>max</span><span style='color:#800000; '>'</span> <span style='color:#800080; '>:</span> <span style='color:#008c00; '>124</span> <span style='color:#696969; '>//The max value the user can submit</span>
+<span style='color:#800080; '>}</span><span style='color:#808030; '>,</span> <span style='color:#800000; font-weight:bold; '>function</span> <span style='color:#808030; '>(</span>modal<span style='color:#808030; '>,</span> event<span style='color:#808030; '>,</span> age<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+    console<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>log</span><span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>So you tell me you're'</span><span style='color:#800000; '>"</span> <span style='color:#808030; '>+</span> age<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+<span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+            </pre>
+        </div>
+        <div class="col-xs-12">
+            <h4>Return values</h4>
+            <p><strong>age : </strong> The third argument of the function is a string by default. If you chose a input of type
+                'number', a number instead of a string will be returned.
+            </p>
+        </div>
+        <div class="col-xs-12">
+            <h4>Result</h4>
+            <img class="img-thumbnail" src="assets/images/prompt.png" />
+        </div>
+    </div>
+    <div class="col-xs-12" >
+        <h3 id="select" >Select</h3>
+        <p>
+            This modal contain a single input. It's a select. The user need to select a value in those proposed
+        </p>
+        <div class="col-xs-12">
+            <p><strong>Type name : </strong><code> easyModal.types.SELECT</code></p>
+        </div>
+        <div class="col-xs-12">
+            <h4>Usage</h4>
+            <pre style='color:#000000;background:#ffffff;'>easyModal<span style='color:#808030; '>.</span>select<span style='color:#808030; '>(</span><span style='color:#800080; '>{</span>
+    <span style='color:#800000; '>'</span><span style='color:#0000e6; '>title</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>What is your favorite fruit</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span> <span style='color:#696969; '>//Modal title</span>
+    <span style='color:#800000; '>'</span><span style='color:#0000e6; '>values</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> <span style='color:#808030; '>[</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>Apple</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>Mango</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>Pear</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>Strawberry</span><span style='color:#800000; '>'</span><span style='color:#808030; '>]</span><span style='color:#808030; '>,</span> <span style='color:#696969; '>//Possible values of the select</span>
+    <span style='color:#800000; '>'</span><span style='color:#0000e6; '>selectLabel</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>Choose a fruit</span><span style='color:#800000; '>'</span> <span style='color:#696969; '>//The title of the select</span>
+<span style='color:#800080; '>}</span><span style='color:#808030; '>,</span> <span style='color:#800000; font-weight:bold; '>function</span> <span style='color:#808030; '>(</span>modal<span style='color:#808030; '>,</span> event<span style='color:#808030; '>,</span> <span style='color:#797997; '>index</span><span style='color:#808030; '>,</span> value<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+    console<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>log</span><span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>You choose the index number </span><span style='color:#800000; '>"</span> <span style='color:#808030; '>+</span> <span style='color:#797997; '>index</span><span style='color:#808030; '>,</span> <span style='color:#800000; '>"</span><span style='color:#0000e6; '>That's the fruit called '</span><span style='color:#800000; '>"</span> <span style='color:#808030; '>+</span> value<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+<span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+            </pre>
+        </div>
+        <div class="col-xs-12">
+            <h4>Return values</h4>
+            <p><strong>index : </strong> the index of the selected option</p>
+            <p><strong>value : </strong> the value of the selected option</p>
+        </div>
+        <div class="col-xs-12">
+            <h4>Result</h4>
+            <img class="img-thumbnail" src="assets/images/select.png" />
+        </div>
+    </div>
+    <div class="col-xs-12" >
+        <h3 id="textNarea" >Text and Textarea</h3>
+        <p>
+            This modal contain two inputs : a simple text input, and a textarea.
+        </p>
+        <div class="col-xs-12">
+            <p><strong>Type name : </strong><code> easyModal.types.TEXTNAREA</code></p>
+        </div>
+        <div class="col-xs-12">
+            <h4>Usage</h4>
+            <pre style='color:#000000;background:#ffffff;'><span style='color:#696969; '>//Basic use :</span>
+easyModal<span style='color:#808030; '>.</span>textNArea<span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>Name and description</span><span style='color:#800000; '>"</span><span style='color:#808030; '>,</span> <span style='color:#800000; font-weight:bold; '>function</span> <span style='color:#808030; '>(</span>modal<span style='color:#808030; '>,</span> event<span style='color:#808030; '>,</span> text<span style='color:#808030; '>,</span> area<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+    console<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>log</span><span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>Your name is </span><span style='color:#800000; '>"</span><span style='color:#808030; '>,</span> text<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+    console<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>log</span><span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>Your description is </span><span style='color:#800000; '>"</span><span style='color:#808030; '>,</span> area<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+<span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+<span style='color:#696969; '>//custom use</span>
+ easyModal<span style='color:#808030; '>.</span>textNArea<span style='color:#808030; '>(</span><span style='color:#800080; '>{</span>
+    <span style='color:#800000; '>'</span><span style='color:#0000e6; '>title</span><span style='color:#800000; '>'</span> <span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>Name and description</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span>
+    <span style='color:#800000; '>'</span><span style='color:#0000e6; '>textLabel</span><span style='color:#800000; '>'</span> <span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>Your name</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span>
+    <span style='color:#800000; '>'</span><span style='color:#0000e6; '>areaLabel</span><span style='color:#800000; '>'</span> <span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>Your description</span><span style='color:#800000; '>'</span>
+ <span style='color:#800080; '>}</span><span style='color:#808030; '>,</span><span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>modal<span style='color:#808030; '>,</span>event<span style='color:#808030; '>,</span>tex<span style='color:#808030; '>,</span>area<span style='color:#808030; '>)</span><span style='color:#800080; '>{</span>
+     console<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>log</span><span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>Your name : </span><span style='color:#800000; '>"</span> <span style='color:#808030; '>+</span> tex<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+     console<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>log</span><span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>Your description : </span><span style='color:#800000; '>"</span> <span style='color:#808030; '>+</span> area<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+ <span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+            </pre>
+        </div>
+        <div class="col-xs-12">
+            <h4>Return values</h4>
+            <p><strong>text : </strong> the string the user type in the text input </p>
+            <p><strong>area : </strong> the string the user type in the textarea</p>
+        </div>
+        <div class="col-xs-12">
+            <h4>Result</h4>
+            <img class="img-thumbnail" src="assets/images/textNarea.png" />
+        </div>
+    </div>
+    <div class="col-xs-12" >
+        <h3 id="textNselect" >Text and Select</h3>
+        <p>
+            This modal looks like the text and area one. But instead of a textarea, there is a
+            select input, where the user have to choose a value.
+        </p>
+        <div class="col-xs-12">
+            <p><strong>Type name : </strong><code> easyModal.types.TEXTNDROPDOWN</code></p>
+        </div>
+        <div class="col-xs-12">
+            <h4>Usage</h4>
+            <pre style='color:#000000;background:#ffffff;'>easyModal<span style='color:#808030; '>.</span>textNDropDown<span style='color:#808030; '>(</span><span style='color:#800080; '>{</span>
+    <span style='color:#800000; '>'</span><span style='color:#0000e6; '>title</span><span style='color:#800000; '>'</span> <span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>Whats your favorite number and color ?</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span> <span style='color:#696969; '>//Modal title</span>
+    <span style='color:#800000; '>'</span><span style='color:#0000e6; '>input</span><span style='color:#800000; '>'</span> <span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>number</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span> <span style='color:#696969; '>// The type of the first input</span>
+    <span style='color:#800000; '>'</span><span style='color:#0000e6; '>selectVal</span><span style='color:#800000; '>'</span> <span style='color:#800080; '>:</span> <span style='color:#808030; '>[</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>Red</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>Blue</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>White</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>Black</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>Gray</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span><span style='color:#800000; '>'</span><span style='color:#0000e6; '>Green</span><span style='color:#800000; '>'</span><span style='color:#808030; '>]</span><span style='color:#808030; '>,</span> <span style='color:#696969; '>//The values of the select</span>
+    <span style='color:#800000; '>'</span><span style='color:#0000e6; '>selectLabel</span><span style='color:#800000; '>'</span> <span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>Pick a color</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span> <span style='color:#696969; '>//The label of the select</span>
+    <span style='color:#800000; '>'</span><span style='color:#0000e6; '>textLabel</span><span style='color:#800000; '>'</span> <span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>9</span><span style='color:#800000; '>'</span> <span style='color:#696969; '>//The placeholder of the text</span>
+<span style='color:#800080; '>}</span><span style='color:#808030; '>,</span><span style='color:#800000; font-weight:bold; '>function</span><span style='color:#808030; '>(</span>modal<span style='color:#808030; '>,</span>event<span style='color:#808030; '>,</span>text<span style='color:#808030; '>,</span><span style='color:#797997; '>index</span><span style='color:#808030; '>,</span>selValue<span style='color:#808030; '>)</span><span style='color:#800080; '>{</span>
+    console<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>log</span><span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>Your favorite number is </span><span style='color:#800000; '>"</span> <span style='color:#808030; '>+</span> <span style='color:#797997; '>index</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+    console<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>log</span><span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>And you selected the index number </span><span style='color:#800000; '>"</span> <span style='color:#808030; '>+</span> <span style='color:#797997; '>index</span> <span style='color:#808030; '>+</span> <span style='color:#800000; '>"</span><span style='color:#0000e6; '> as your favorite color</span><span style='color:#800000; '>"</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+    console<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>log</span><span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>Which correspond to the value '</span><span style='color:#800000; '>"</span> <span style='color:#808030; '>+</span> selValue <span style='color:#808030; '>+</span> <span style='color:#800000; '>"</span><span style='color:#0000e6; '>'. Great !</span><span style='color:#800000; '>"</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+<span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+            </pre>
+        </div>
+        <div class="col-xs-12">
+            <h4>Return values</h4>
+            <p><strong>text : </strong> the string the user typed into the first input</p>
+            <p><strong>index : </strong> the number correponding to the index of the selected option</p>
+            <p><strong>selValue : </strong> the string corresponding to the value of the selected option</p>
+        </div>
+        <div class="col-xs-12">
+            <h4>Result</h4>
+            <img class="img-thumbnail" src="assets/images/textNselect.png" />
+        </div>
+    </div>
+    <div class="col-xs-12" >
+        <h3 id="custom" >Custom</h3>
+        <p>
+            Here, you can put whatever you want as title, body and buttons.
+        </p>
+        <div class="col-xs-12">
+            <p><strong>Type name : </strong><code> easyModal.types.CUSTOM</code></p>
+        </div>
+        <div class="col-xs-12">
+            <h4>Usage</h4>
+            <pre style='color:#000000;background:#ffffff;'>easyModal<span style='color:#808030; '>.</span>custom<span style='color:#808030; '>(</span><span style='color:#800080; '>{</span>
+        <span style='color:#800000; '>'</span><span style='color:#0000e6; '>title</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>The end of the API</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span><span style='color:#696969; '>//Modal title</span>
+        <span style='color:#696969; '>//The content, it can be HTML as well as a simple string</span>
+        <span style='color:#800000; '>'</span><span style='color:#0000e6; '>content</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>Here is the end of the API documentation &lt;br/> &lt;img src="assets/images/api.png" />&lt;br/> Hope it helped you</span><span style='color:#800000; '>'</span><span style='color:#808030; '>,</span>
+        <span style='color:#800000; '>'</span><span style='color:#0000e6; '>buttons</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> easyModal<span style='color:#808030; '>.</span>templates<span style='color:#808030; '>.</span>submitButton<span style='color:#808030; '>,</span><span style='color:#696969; '>//The bottom-buttons</span>
+        <span style='color:#800000; '>'</span><span style='color:#0000e6; '>submitCallback</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> <span style='color:#800000; font-weight:bold; '>function</span> <span style='color:#808030; '>(</span>modal<span style='color:#808030; '>,</span> event<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+            console<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>log</span><span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>You submitted this modal</span><span style='color:#800000; '>"</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+            console<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>log</span><span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>Thank you for you attention</span><span style='color:#800000; '>"</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+        <span style='color:#800080; '>}</span><span style='color:#808030; '>,</span><span style='color:#696969; '>//The function to call when the user close the modal</span>
+        <span style='color:#800000; '>'</span><span style='color:#0000e6; '>showCallback</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> <span style='color:#800000; font-weight:bold; '>function</span> <span style='color:#808030; '>(</span>modal<span style='color:#808030; '>,</span> event<span style='color:#808030; '>)</span> <span style='color:#800080; '>{</span>
+            console<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>log</span><span style='color:#808030; '>(</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>Just came to show the modal : </span><span style='color:#800000; '>"</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+            console<span style='color:#808030; '>.</span><span style='color:#800000; font-weight:bold; '>log</span><span style='color:#808030; '>(</span>modal<span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+        <span style='color:#800080; '>}</span><span style='color:#808030; '>,</span><span style='color:#696969; '>//A function to call when the modal is shown</span>
+        <span style='color:#800000; '>'</span><span style='color:#0000e6; '>size</span><span style='color:#800000; '>'</span><span style='color:#800080; '>:</span> <span style='color:#800000; '>'</span><span style='color:#0000e6; '>modal-lg</span><span style='color:#800000; '>'</span><span style='color:#696969; '>//The modals size</span>
+    <span style='color:#800080; '>}</span><span style='color:#808030; '>)</span><span style='color:#800080; '>;</span>
+            </pre>
+        </div>
+        <div class="col-xs-12">
+            <h4>Return values</h4>
+            <p>None, except as usual, the modal and the event</p>
+        </div>
+        <div class="col-xs-12">
+            <h4>Result</h4>
+            <img class="img-thumbnail" src="assets/images/custom.png" />
+        </div>
+    </div>
+</div>

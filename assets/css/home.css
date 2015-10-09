@@ -1,0 +1,98 @@
+
+/* 
+    Created on : 24 sept. 2015, 19:12:21
+    Author     : root
+*/
+
+
+html,body{
+    height: 100vh;
+    max-height: 100vh;
+}
+
+#parallax{
+    z-index: -1;
+    position: fixed;
+    min-height: 100vh;
+    width: 100vw;
+    background : url('../images/alps.jpg') center 0 no-repeat fixed;
+}
+
+img{
+    padding: 10px;
+}
+
+.fill{
+    height: 90%;
+    min-height: 55vh;
+}
+
+#map{
+    height: 90%;
+}
+
+#main_title{
+    height: 100vh;
+}
+div.transparent{
+    height: auto;
+    padding-bottom: 40px;
+    padding-top: 40px;
+    background: rgba(203,229,225,0.8); 
+}
+
+.white{
+    height: auto;
+    background: whitesmoke;
+}
+
+.transparent,.white{
+    padding: 20px;
+}
+
+#main_title h1{
+    top: 50vh;
+    margin-top: 35vh;
+    font-weight: bold;
+    font-size: 8em;
+}
+
+div.list-group li.btn-group{
+    padding: 0px;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.btn-left{
+    width: calc(60% - 1px );
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-right: none;
+}
+
+.btn-right{
+    border-left: none;
+    width: calc(40% - 2px );
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-bottomright: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+footer{
+    padding : 50px 10px 50px 10px;
+    color: white;
+    font-size: 1.2em;
+}
+
+.gallery .img-responsive{
+    display: inline-block;
+    margin-right: 0px;
+    height: 100px;
+}

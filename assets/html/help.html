@@ -1,0 +1,190 @@
+
+<div>
+    <h3>General informations</h3>
+    <p>This editor is a Wysiwyg editor. Wysiwyg stands for <em>What You See is What You Get</em>
+        There are several ways to use Wysiwyg. One way is to drag'n'drop the elements in divs.
+        We decided that it would be more secure and easier to have a visual of where you can add your content.
+        The places where you can add what you want have a big 'plus' in the middle. And when you hover your mouse on these
+        sections, the cross will animate. Now if you click on this div, a sideBar will open to propose you the things
+        you can add it this div. The possible choices are separate into three parts : the basic css components (text,heading),
+        the more complex components, and finally, the javascrip-requiring components. Of course you don't need to have any knowledge
+        in code. It's just a way to organise the features. If you're getting lost in all these, you can search the feature you want.
+        If the feature you're looking for exists, the accordion will unfold, and the feature you're looking for will look <span class="found" >like this</span>
+    </p>
+    <p>
+        Nobody's perfect, so if you missclick on a bad div and you didn't want that to happen, you can click on 'nevermind'
+        and it will cancel the adding action.
+    </p>
+
+    <h3>Shortctus</h3>
+    <p>To save your times, we set some shortcuts so that you just have to do a combination of keys on you keyboard.
+        The major part of the existing shortcuts are indicated with a little tag <span class="label label-info" >Like this</span>
+        Here is the list all of the available shortcuts :
+    <ul class="list-group list-unstyled" >
+        <li class="list-group-item" >
+            <h4>Ctrl + s</h4>
+            <p>Save your project (see description down below)</p>
+        </li>
+        <li class="list-group-item" >
+            <h4>Ctrl + z</h4>
+            <p>To undo the last action you did (see description down below)</p>
+        </li>
+        <li class="list-group-item" >
+            <h4>Ctrl + right</h4>
+            <p>Go to the next view. (see descrption down below)</p>
+        </li>
+        <li class="list-group-item" >
+            <h4>Ctrl + left</h4>
+            <p>Go to the previous view (see decription down below)</p>
+        </li>
+        <li class="list-group-item" >
+            <h4>Ctrl + r</h4>
+            <p>Restart you project (see description down below)</p>
+        </li>
+        <li class="list-group-item" >
+            <h4>Ctrl + h</h4>
+            <p>Go on the home page (see description down below)</p>
+        </li>
+    </ul>
+</p>
+
+<h3>Options</h3>
+<ul class="list-group list-unstyled" >
+    <li class="list-group-item" >
+        <h4>Save</h4>
+        <p>Create a project is a good thing. But if you can save it, it's even better. So by clicking this button,
+            you can save your project, leave your work, close the tab. And then when you come back, the project will
+            be proposed in the main page. If you didt' give any name to your project yet, one name will be asked to you.
+        <p class="text-danger" >Attention, if you give a name to your project, and this project name already exists,
+            the existing one will be replaced by the new one.
+        </p>
+        So you can create multiple projects and name them differently.
+        <!--Todo : can delete the save --> 
+        </p>
+    </li>
+    <li class="list-group-item" >
+        <h4>Undo</h4>
+        <p>
+            If you missclick and place a new element at a bad place, you can cancel your action. By clicking on this
+            button, or by doing the shortcut : <kbd>ctrl + z</kbd>. The last block you placed will be removed.
+            You can undo straight multiple actions. But if you want to restart the whole project, the best way
+            is to click on 'restart'.
+        <p class="text-warning" >
+            The undo action only work for the 'add' action, not for the actions such as 'changing font color' and those
+            proposed by the contextmenu
+        </p>
+        </p>
+    </li>
+    <li class="list-group-item" > 
+        <h4>Restart</h4>
+        <p>
+            Sometimes, you can just think 'well, my project is not that good, I'd better restart from the beginning'.
+            In this case, you just have to click on the 'restar' button. Be really carefull : this action is no revesrible
+            If you're not sure if you want to keep your work, it would be better to create a whole new project instead
+            of delete the current and lose all the time spent.
+        <p class="text-danger" >Once again, if you restart a project, you can't undo the restart action, be really carefull</p>
+        </p>
+    </li>
+    <li class="list-group-item" >
+        <h4>Documentation</h4>
+        <p>
+            This part is mostyl for the developpers who want to develop plugins for the weasywig editor.
+            The documentation is composed of the differents API of the Weasywigs components.
+            If you're not a developper, you'll get lost, but it can helps you understanding the all working of 
+            the editor.
+        </p>
+    </li>
+    <li class="list-group-item" >
+        <h4>Home</h4>
+        <p>
+            We don't want you to get stuck on the editor, so you can go back on the main page.
+            Just click this button and go back to the menu
+        <p class="text-warning" >If you don't save your project when leaving, it will not save automatically.
+            So don't forget to save before leaving.
+        </p>
+        </p>
+    </li>
+</ul>
+
+<h3>Contextmenu options</h3>
+You can access to these options at every moment, just by righ-clicking on a created div.
+The contextmenu will only appear if you clicked on a created div. It won't work on the available boxes.
+(the ones with the '+' in it)
+<ul class="list-group list-unstyled" >
+    <li class="list-group-item" >
+        <h4>Change font color</h4>
+        <p>
+            To add some colors to your creation, you can change the fonts color of the selected div.
+            You can enter differents values for color :
+        <ul class="list-unstyled list-group" >
+            <li class="list-group-item" >An hexadecimal value (looking like this : <kbd>#123123</kbd> ) </li>
+            <li class="list-group-item" >A red-green-blue value. Someting like this :<kbd>rgb(1,2,3)</kbd> </li>
+            <li class="list-group-item" >An existing color in html colors : <a target="_blank" href="http://www.w3schools.com/cssref/css_colorsfull.asp">existing values</a> </li>
+        </ul>
+        </p>
+    </li>
+    <li class="list-group-item" >
+        <h4>Change background color</h4>
+        <p>
+            Because changing the font color is not enougth, you can also change the background-color of a div.
+            The possibles colors are the same as the font color.
+        </p>
+    </li>
+    <li class="list-group-item" >
+        <h4>Change font size</h4>
+        <p>
+            The default font-size might be to small for you (or too big ?). So you can change it in two clicks
+            If you enter a simple number, the default unit will be the pixels, but you can change this just by
+            adding the good unit of mesure right beind the value. Like this <kbd>1.3em</kbd>
+            If you give a unit it must be a <a href="http://www.w3schools.com/cssref/css_units.asp" target="_blanck" >css-valid unit</a>.
+        </p>
+    </li>
+    <li class="list-group-item" >
+        <h4>Remove</h4>
+        <p>If you want to remove a part of your page, you can, just by choosing this option</p>
+        <p class="text-warning" >The remove action cannot be cancelled</p>
+    </li>
+</ul>
+
+<h3>Differents Views and modes</h3>
+You can go from a view to another by choosing it on the right dropdown of the navbar.
+An other way to change is simply to do the sorctus <kbd> <kbd>ctrl</kbd> + <kbd> left</kbd>  </kbd> or
+<kbd><kbd>ctrl</kbd> + <kbd>rigt</kbd> </kbd>. A piece of take !
+You can change of view as many times as you want.
+<ul class="list-group list-unstyled" >
+    <li class="list-group-item" >
+        <h4>Editor</h4>
+        <p>
+            The main part of the editor : the editor itself.
+            Where you can change remove, add blocks to your page.
+            It is the default page of the editor.
+        </p>
+    </li>
+    <li class="list-group-item" >
+        <h4>View result</h4>
+        <p>
+            If you want to have a preview of what your page is giving without all the available divs.
+            Thanks to this view, you can clearly see how your page look, and if it actually look as you expected.
+            If it does no suits to you, you can come back to the editor and change what you have to change.
+        </p>
+    </li>
+    <li class="list-group-item" >
+        <h4>Edit code</h4>
+        <p>
+            You can see the HTML code generated by the editor. You can either copy-paste it or edit it.
+            We're sorry for the bad display. Weasywig did not succeed to display it as well as it should be
+            and because of that, it's really hard to edit the code directly in the app. We recommand to copy-paste
+            it into your favorite editor, modify it, and then paste the new code into the editable div.
+            As soon as you come back to the editor, the displayed content correspond to the code wich was in the div.
+        </p>
+    </li>
+    <li class="list-group-item" >
+        <h4>Help</h4>
+        <p>
+            That's were we are right now ! We hope that this help really helped you to find what you were looking for
+            Have fun with the editor. Don't break it please. If you have any issues, please contact us at the adress
+            given on the homepage
+        </p>
+    </li>
+</ul>
+</div>
