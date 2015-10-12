@@ -39,7 +39,12 @@
 
 //Google maps stuff
 function initMap() {
-    var myLatLng = {lat: 45.502831, lng: 6.05431};
+    var key = 'AIzaSyB4wcYndpXCDGPxRRm5r5yhIJOfoyE8Fi8',
+            url = 'https://maps.googleapis.com/maps/api/geocode/json',
+            myLatLng = {lat: 45.502831, lng: 6.05431}, origin,
+            directionsService = new google.maps.DirectionsService,
+            directionsDisplay = new google.maps.DirectionsRenderer;
+
     var image = {
         url: 'assets/images/marker.png',
         // This marker is 20 pixels wide by 32 pixels high.
@@ -59,6 +64,8 @@ function initMap() {
         zoom: 10,
         center: myLatLng
     });
+
+
     var contentString = '<div id="content">' +
             '<div id="siteNotice">' +
             '</div>' +
@@ -88,19 +95,33 @@ function initMap() {
         shape: shape,
         title: 'WeasyWig Company'
     });
+
+    directionsDisplay.setMap(map);
+
     //marker.addListener('mouseover', addAnimation);
-    marker.addListener('mouseout', removeAnimation);
     marker.addListener('click', function () {
         infowindow.open(map, marker);
     });
 
-    function addAnimation() {
-        marker.setAnimation(google.maps.Animation.BOUNCE);
+
+    function travelFrom(formatedAdress) {
+        directionsService.route({
+            origin: formatedAdress,
+            destination: new google.maps.LatLng(myLatLng.lat,myLatLng.lng),
+            travelMode: google.maps.TravelMode.DRIVING
+        }, function (response, status) {
+            if (status === google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response);
+            } else {
+                window.alert('Directions request failed due to ' + status);
+            }
+        });
     }
 
 
-    function removeAnimation() {
-        marker.setAnimation(null);
-    }
+    google.maps.event.addListener(map, "rightclick", function (event) {
+        travelFrom(event.latLng);
+    });
+
 
 }
