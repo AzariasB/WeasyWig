@@ -380,3 +380,12 @@ span.input-group-btn{
 #contextMenu li:hover,.contextmenu li:hover {
     background-color: #afd9ee;
 }
+
+.ui-front{
+    z-index: 1000;
+}
+
+.qtv{
+    color : #800000;
+    font-weight: bold;
+}

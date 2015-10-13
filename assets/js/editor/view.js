@@ -44,6 +44,7 @@ var MainView = function () {
 MainView.prototype = {
     init: function () {
         Weasywig.setView(this);
+        $(document).tooltip();
         this.setEvents();
         this.setShortcuts(this.shortcuts);
         this.setStates(STATES);
@@ -51,6 +52,7 @@ MainView.prototype = {
         this.errorHandle();
         var comp = Weasywig.getComponents();
         this.addComponents(comp);
+        this.setAutoCompletion();
 
         if (window.location.hash) {
             this.setProjectName(window.location.hash.substr(1), false);
@@ -109,15 +111,13 @@ MainView.prototype = {
         event.preventDefault();
         var $target = $("#search_block");
         var val = $target.val();
-        if (!val) {
-            this.removeAllClass('found');
-        } else {
-            this.searchForBlock(val);
-        }
+        this.removeAllClass('found');
+        this.searchForBlock(val);
 
     },
     removeAllClass: function (className) {
         $('.' + className).each(function () {
+            console.log($(this).text());
             $(this).removeClass(className);
         });
     },
@@ -126,7 +126,6 @@ MainView.prototype = {
             var $aS = $(this).find("ul li a");
             var found = false;
             $aS.each(function () {
-                console.log($(this).text());
                 if ($(this).text().toLowerCase().indexOf(blockName.toLowerCase($aS)) > -1) {
                     $(this).parent().addClass('found');
                     found = true;
@@ -482,6 +481,16 @@ MainView.prototype = {
             $query.find('ul').append($mComponent);
         });
         $("#panels").append($query);
+    },
+    setAutoCompletion: function () {
+        var autoCompletOptions = [];
+        $('#panels').find('ul>li>a').each(function () {
+            autoCompletOptions.push($(this).text());
+        });
+        $('#search_block').autocomplete({
+            source: autoCompletOptions,
+            autoFocus: true
+        });
     },
     /*
      * 

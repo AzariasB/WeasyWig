@@ -108,5 +108,7 @@
             changeSubDoc(parent, '#' + sonDoc);
         }
     });
+    
+    $(document).tooltip();
 
 })();
