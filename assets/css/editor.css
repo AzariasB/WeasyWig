@@ -19,7 +19,7 @@
     z-index: 1;
     // transition: all ease 0.5s;
     background-color: rgba(200,200,200,0.5);
-    background-image: url('../images/plus.png');
+    background-image: url('../images/editor/plus.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: auto 70%;

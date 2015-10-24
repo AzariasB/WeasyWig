@@ -124,7 +124,7 @@ foreach (new DirectoryIterator('assets/saves') as $fileInfo) {
                 </div>
                 <div class="hidden-xs col-sm-6">
                     <a href="documentation.html">
-                        <img class="img-responsive" src="assets/images/api.png" />
+                        <img class="img-responsive" src="assets/images/home/api.png" />
                     </a> 
                 </div>
             </div>
@@ -134,12 +134,12 @@ foreach (new DirectoryIterator('assets/saves') as $fileInfo) {
                 </div>
                 <div class="col-xs-6 text-center gallery">
                     <div class="col-xs-12">
-                        <!--<img title="Mousetrap" class="img-responsive" src="assets/images/mousetrap.png" />-->
+                        <!--<img title="Mousetrap" class="img-responsive" src="assets/images/home/mousetrap.png" />-->
                         <object width="100%" hidden="" type="image/svg+xml" data="assets/svg/mousetrap.svg"></object>
                         <object width="100%" hidden="" type="image/svg+xml" data="assets/svg/underscore.svg" ></object>
-                        <img title="Bootstrap"  src="assets/images/bootstrap.png" class="img-responsive" /> 
-                        <img title="jQuery"  src="assets/images/jquery.png" />
-                        <img title="jQueryUi" src="assets/images/jquery_ui.png" />
+                        <img title="Bootstrap"  src="assets/images/home/bootstrap.png" class="img-responsive" /> 
+                        <img title="jQuery"  src="assets/images/home/jquery.png" />
+                        <img title="jQueryUi" src="assets/images/home/jquery_ui.png" />
                     </div>
                 </div>
                 <div class="col-xs-6">

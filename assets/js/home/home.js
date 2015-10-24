@@ -83,7 +83,7 @@ function initMap() {
             directionsDisplay = new google.maps.DirectionsRenderer;
 
     var image = {
-        url: 'assets/images/marker.png',
+        url: 'assets/images/home/marker.png',
         // This marker is 20 pixels wide by 32 pixels high.
         size: new google.maps.Size(64, 64),
         origin: new google.maps.Point(0, 0),

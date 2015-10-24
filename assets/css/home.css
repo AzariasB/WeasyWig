@@ -14,7 +14,7 @@ html,body{
     position: fixed;
     min-height: 100vh;
     width: 100vw;
-    background : url('../images/pencil2.jpg') center 0 no-repeat content-box;
+    background : url('../images/home/pencil2.jpg') center 0 no-repeat content-box;
 }
 
 #heading_buttons{
