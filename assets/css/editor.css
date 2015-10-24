@@ -389,3 +389,7 @@ span.input-group-btn{
     color : #800000;
     font-weight: bold;
 }
+
+.gray-bkg{
+    background-color: #eee;
+}

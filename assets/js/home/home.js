@@ -1,21 +1,40 @@
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ Parallax, project delete
+ and google maps API gestion
  */
 
 
 /* global google */
 
 (function () {
-    $(window).scrollTop(0);
+    /*
+     * 
+     */
+    if($(window).scrollTop() === 0){
+        $('object[hidden]').first().removeAttr('hidden');
+    }
+    
+    
     $('#parallax').css('background-position-y', '0%');
 
     $(window).scroll(function () {
         //Simple parallax
+        var height = $(window).height();
         var scrollPos = $(window).scrollTop();
+
+        $("#heading_buttons").toggleClass("clone", (scrollPos > height));
         var percent = (scrollPos / $(document).height()) * 100;
         $('#parallax').css('background-position-y', percent + '%');
+        
+        
+        $('object[hidden]').attr('hidden',function(index,attr){
+            if($(this).closest('.row').offset().top <= scrollPos + height){
+                return null;
+            }else{
+                return "";
+            }
+        });
+
     });
 
 
@@ -24,7 +43,6 @@
         if (confirm("Do you really want to delete this project ?")) {
             var fileToRemove = $(this).attr('id').replace('remove_', '');
             $.post('destroy.php', {projectName: fileToRemove}, function (data) {
-                console.log(data);
                 var res = JSON.parse(data);
                 if (res) {
                     //reload page
@@ -32,6 +50,25 @@
                 }
             });
         }
+    });
+
+
+    $('#heading_buttons a').click(function (event) {
+        event.preventDefault();
+        $('#heading_buttons a').each(function () {
+            $(this).removeClass('current');
+        });
+        $(this).addClass('current');
+        $('body').animate({
+            scrollTop: $($(this).attr('href')).offset().top
+        }, 500, 'swing');
+    });
+    
+    $('#to_top').click(function(){
+        $('body').animate({
+            scrollTop : $('#Projects').offset().top - $('#heading_buttons').height()
+        },500,'swing');
+       return false; 
     });
 })();
 
@@ -97,6 +134,7 @@ function initMap() {
     });
 
     directionsDisplay.setMap(map);
+    directionsDisplay.setPanel(document.getElementById('map_container'));
 
     //marker.addListener('mouseover', addAnimation);
     marker.addListener('click', function () {
@@ -107,7 +145,7 @@ function initMap() {
     function travelFrom(formatedAdress) {
         directionsService.route({
             origin: formatedAdress,
-            destination: new google.maps.LatLng(myLatLng.lat,myLatLng.lng),
+            destination: new google.maps.LatLng(myLatLng.lat, myLatLng.lng),
             travelMode: google.maps.TravelMode.DRIVING
         }, function (response, status) {
             if (status === google.maps.DirectionsStatus.OK) {

@@ -12,21 +12,23 @@
         <title>WeasyWig editor</title>
 
         <link href="assets/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css" />
-        <!-- Existing ressources -->
-        <script src="assets/js/jquery.js"></script>
+        <!-- Librairies -->
+        <script src="assets/js/lib/jquery.js"></script>
         <script src="assets/jquery-ui/jquery-ui.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/underscore.js"></script>
-        <script src="assets/js/editor/modal.js"></script>
-        <script src="assets/js/mousetrap.js"></script>
+        <script src="assets/js/lib/bootstrap.min.js"></script>
+        <script src="assets/js/lib/underscore.js"></script>
+        <script src="assets/js/editor/plugins/modal.js"></script>
+        <script src="assets/js/lib/mousetrap.js"></script>
 
         <!-- Customs scripts -->
         <script src="assets/js/editor/weasywig.js"></script>
-        <script src="assets/js/editor/contextmenu.js"></script>
-        <script src="assets/js/editor/states.js"></script>
-        <script src="assets/js/editor/basic.js"></script>
-        <script src="assets/js/editor/component.js"></script>
-        <script src="assets/js/editor/javascript.js"></script>
+        <script src="assets/js/editor/plugins/contextmenu.js"></script>
+        <script src="assets/js/editor/plugins/states.js"></script>
+        
+        <!-- Available blocks -->
+        <script src="assets/js/editor/blocks/basic.js"></script>
+        <script src="assets/js/editor/blocks/component.js"></script>
+        <script src="assets/js/editor/blocks/javascript.js"></script>
 
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/editor.css" rel="stylesheet" type="text/css" />
@@ -98,11 +100,11 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-cog"></i> Options <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#" id="undo_button" >Undo <span class="label label-info" >ctrl + z</span> </a></li>
-                                <li><a href="#" id="restart_button" >Restart <span class="label label-info" >ctrl + r</span> </a></li>
+                                <li><a href="#" id="undo_button" > <span class="glyphicon glyphicon-triangle-left"></span> Undo <span class="label label-info" >ctrl + z</span> </a></li>
+                                <li><a href="#" id="restart_button" > <span class="glyphicon glyphicon-refresh"></span>  Restart <span class="label label-info" >ctrl + r</span> </a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="./documentation.html">Documentation</a></li>
-                                <li><a href="./index.php">Home <span class="label label-info" >ctrl + h</span> </a></li>
+                                <li><a href="./documentation.html"> <span class="glyphicon glyphicon-book"></span> Documentation</a></li>
+                                <li><a href="./index.php"> <span class="glyphicon glyphicon-home"></span> Home <span class="label label-info" >ctrl + h</span> </a></li>
                             </ul>
                         </li>
                     </ul>

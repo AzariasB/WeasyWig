@@ -1,9 +1,8 @@
 
 /* 
     Created on : 24 sept. 2015, 19:12:21
-    Author     : root
+    Author     : Azarias
 */
-
 
 html,body{
     height: 100vh;
@@ -15,8 +14,51 @@ html,body{
     position: fixed;
     min-height: 100vh;
     width: 100vw;
-    background : url('../images/alps.jpg') center 0 no-repeat fixed;
+    background : url('../images/pencil2.jpg') center 0 no-repeat content-box;
 }
+
+#heading_buttons{
+    background-color: rgb(18,18,18);
+    left : 0;
+    position: absolute;
+    z-index: 999;
+    height: 50px;
+    opacity: 0.5;
+    transition: all ease-in-out 500ms;
+}
+
+#heading_buttons.clone{
+    position: fixed;
+    top: 0;
+}
+
+#heading_buttons .current{
+
+}
+
+#heading_buttons a{
+    text-decoration: none;
+    color: white;
+}
+
+#heading_buttons a h4{
+    transition: all ease-in-out 100ms;
+    border-bottom: 0px solid white;
+    padding-bottom: 0px;
+}
+
+#heading_buttons a:hover h4,
+#heading_buttons a.current h4
+{
+    padding-bottom: 4px;
+    border-bottom-width: 2px;
+}
+
+#heading_buttons:hover{
+    opacity: 1;
+}
+
+
 
 img{
     padding: 10px;
@@ -36,24 +78,35 @@ img{
 }
 div.transparent{
     height: auto;
-    padding-bottom: 40px;
-    padding-top: 40px;
-    background: rgba(203,229,225,0.8); 
+    /*    padding-bottom: 40px;
+        padding-top: 40px;*/
+    color: white;
+    background: rgba(146,146,146,0.9);
 }
 
-.white{
+div.white{
     height: auto;
-    background: whitesmoke;
+    background: rgba(240,158,0,0.5);
+}
+
+.fill > .white{
+    border-top: 1px solid black;
+    margin-top: 50px;
+}
+
+.fill > .white ~ .white{
+    border :none;
+    margin-top: 0px;
 }
 
 .transparent,.white{
-    padding: 20px;
+    padding: 50px 10px 40px 10px;
 }
 
-#main_title h1{
+#main_title object{
     top: 50vh;
     margin-top: 35vh;
-    font-weight: bold;
+    font-family: HBSketch;
     font-size: 8em;
 }
 
@@ -88,6 +141,9 @@ div.list-group li.btn-group{
 footer{
     padding : 50px 10px 50px 10px;
     color: white;
+    border-top: 1px solid black;
+    background-color:  rgb(0,0,0);
+    opacity: 1;
     font-size: 1.2em;
 }
 
@@ -95,4 +151,82 @@ footer{
     display: inline-block;
     margin-right: 0px;
     height: 100px;
+}
+
+#smooth_animation{
+    position: absolute;
+    top: 0;
+    left : 0;
+    width: 100%;
+}
+
+.big-glyphicon{
+    font-size: 9em;
+    color: rgb(240,158,0);
+    text-shadow: -4px 0 white, 0 4px white, 4px 0 white, 0 -4px white;
+}
+
+/* Turn on custom 8px wide scrollbar */
+::-webkit-scrollbar {
+    width: 8px; 
+    /* This is more usable for users trying to click it. */
+    background-color: rgba(0,0,0,0);
+    -webkit-border-radius: 100px;
+}
+/* hover effect for both scrollbar area, and scrollbar 'thumb' */
+::-webkit-scrollbar:hover {
+    background-color: rgba(0, 0, 0, 0.09);
+}
+
+::-webkit-scrollbar-track-piece{
+    background-color: rgba(255,255,255,1);
+} 
+
+/* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
+::-webkit-scrollbar-thumb:vertical {
+    /* This is the EXACT color of Mac OS scrollbars. 
+       Yes, I pulled out digital color meter */
+    background: rgba(0,0,0,0.5);
+    -webkit-border-radius: 100px;
+}
+::-webkit-scrollbar-thumb:vertical:active {
+    background: rgba(0,0,0,0.61); /* Some darker color when you click it */
+    -webkit-border-radius: 100px;
+}
+
+//SVG animation :
+.gallery object{
+    width: 100% !important;
+}
+
+#to_top a{
+    position: absolute;
+    text-decoration: none;
+    color : white;
+}
+
+#to_top a p{
+    margin: 0;
+}
+
+#to_top a:hover i{
+    animation: shake 0.35s ease infinite alternate;
+}
+
+//--cross bouncing
+@-webkit-keyframes shake {
+    from {top : 0px;}
+    to {top : 10px;}
+}
+@-moz-keyframes shake {
+    from {top : 0px;}
+    to {top : 10px;}
+}
+@-o-keyframes shake {
+    from {top : 0px;}
+    to {top : 10px;}
+}
+@keyframes shake {
+    from {top : 0px;}
+    to {top : 10px;}
 }

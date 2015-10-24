@@ -24,17 +24,31 @@ foreach (new DirectoryIterator('assets/saves') as $fileInfo) {
         <!--  Css dependencies -->
         <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.min.css" />
         <link type="text/css" rel="stylesheet" href="assets/css/home.css" />
-        <script src="assets/js/jquery.js"></script>
+        <link rel="icon" type="image/png" href="assets/images/favicon.ico" />
+
+        <script src="assets/js/lib/jquery.js"></script>
+        <script src="assets/js/lib/lightbox.js"></script>
     </head>
     <body>
         <div id="parallax" ></div>
+        <canvas id="smooth_animation"></canvas>
         <div class="container-fluid fill">
             <div class="row" id="main_title">
-                <div class="col-xs-12 text-center">
-                    <h1  >Weasywig</h1>
+                <div class="col-xs-12 col-sm-6">
+                    <!--SVG Madness in there-->
+                    <object hidden="" type="image/svg+xml" data="assets/svg/title.svg" class="logo"></object>
                 </div>
             </div>
-            <div class="row white" >
+            <div id="heading_buttons" class="col-xs-12 text-center" >
+                <ul class="list-inline" >
+                    <li><a href="#Projects"><h4>Projects</h4></a></li>
+                    <li><a href="#Localisation"><h4>Localisation</h4></a></li>
+                    <li><a href="#API"><h4>API</h4></a></li>
+                    <li><a href="#Dependencies"><h4>Dependencies</h4></a></li>
+                    <li><a href="#Contact"><h4>Contact</h4></a></li>
+                </ul>
+            </div>
+            <div class="row white" id="Projects" >
                 <div class="col-xs-12">
                     <h2><strong>Your projects</strong></h2>
                     <p class="lead" >Here are all the projects you created, if you want, you can create a whole new one bly clicking
@@ -70,14 +84,15 @@ foreach (new DirectoryIterator('assets/saves') as $fileInfo) {
                     </p>
                 </div>
             </div>
-            <div class="row fill transparent">
+            <div class="row fill transparent no-lightbox" id="Localisation" >
                 <div class="col-xs-12">
                     <h2><strong>Localisation</strong></h2>
                 </div>
-                <div class='col-sm-6 col-xs-12 fill'>
+                <div class='col-sm-6 col-xs-12 fill text-center' id="map_container" >
                     <div class="col-xs-12 text-center fill" id="map"></div>
+                    <p>Right click on the map to set the origin point</p>
                 </div>
-                <div class="col-xs-12 col-sm-6">
+                <div class="col-xs-12 col-sm-6" id="map_direction" >
                     <p class="lead text-justify" >
                         Weasywig is situated in France.
                         Because the fondator is french and from Savoie,
@@ -94,7 +109,7 @@ foreach (new DirectoryIterator('assets/saves') as $fileInfo) {
                 </div>
 
             </div>
-            <div class="row fill white">
+            <div class="row fill white" id="API">
                 <div class="col-xs-12">
                     <h2><strong>Programmable API</strong></h2>
                 </div>
@@ -108,20 +123,23 @@ foreach (new DirectoryIterator('assets/saves') as $fileInfo) {
                     </p>
                 </div>
                 <div class="hidden-xs col-sm-6">
-                    <img class="img-responsive" src="assets/images/api.png" />
+                    <a href="documentation.html">
+                        <img class="img-responsive" src="assets/images/api.png" />
+                    </a> 
                 </div>
             </div>
-            <div class="row fill transparent" >
+            <div class="row fill transparent" id="Dependencies" >
                 <div class="col-xs-12">
                     <h2><strong>Dependencies</strong></h2>
                 </div>
                 <div class="col-xs-6 text-center gallery">
                     <div class="col-xs-12">
-                        <img title="Mousetrap" class="img-responsive" src="assets/images/mousetrap.png" />
-                        <img title="Underscore.js" class="img-responsive" src="assets/images/underscore.png"/>
-                        <img title="Bootstrap" class="img-responsive" src="assets/images/bootstrap.png" /> 
-                        <img title="jQuery" class="img-responsive" src="assets/images/jquery.png" />
-                        <img title="jQueryUi" class="img-responsive" src="assets/images/jquery_ui.png" />
+                        <!--<img title="Mousetrap" class="img-responsive" src="assets/images/mousetrap.png" />-->
+                        <object width="100%" hidden="" type="image/svg+xml" data="assets/svg/mousetrap.svg"></object>
+                        <object width="100%" hidden="" type="image/svg+xml" data="assets/svg/underscore.svg" ></object>
+                        <img title="Bootstrap"  src="assets/images/bootstrap.png" class="img-responsive" /> 
+                        <img title="jQuery"  src="assets/images/jquery.png" />
+                        <img title="jQueryUi" src="assets/images/jquery_ui.png" />
                     </div>
                 </div>
                 <div class="col-xs-6">
@@ -133,7 +151,7 @@ foreach (new DirectoryIterator('assets/saves') as $fileInfo) {
                     </p>
                 </div>
             </div>
-            <div class="row fill white">
+            <div class="row fill white" id="Contact">
                 <div class="col-xs-12">
                     <h2><strong>Contact us</strong></h2>
                 </div>
@@ -148,9 +166,17 @@ foreach (new DirectoryIterator('assets/saves') as $fileInfo) {
                         <b>73800 Montmélian</b>
                     </p>
                 </div>
-                <div class="col-xs-12 col-sm-6">
-                    <img class="img-responsive" src="assets/images/contact-us-icons.png" />
+                <div class="col-xs-12 col-sm-6 big-glyphicon text-center">
+                    <object hidden="" type="image/svg+xml" data="assets/svg/contact.svg"></object>
                 </div>
+            </div>
+            <div class="col-xs-12 text-center" id="to_top" >
+                <a href="#Top">
+                    <p>
+                        <i class="glyphicon glyphicon-chevron-up" ></i>
+                    </p>
+                    <p>Back to top</p>
+                </a>
             </div>
             <footer class="row" >
                 <div class="col-xs-12 col-sm-4">
@@ -182,8 +208,13 @@ foreach (new DirectoryIterator('assets/saves') as $fileInfo) {
                 </div>
             </footer>
         </div>
-        <script type="text/javascript" src="assets/js/home.js"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4wcYndpXCDGPxRRm5r5yhIJOfoyE8Fi8&callback=initMap">
-        </script>
+        <script type="text/javascript" src="assets/js/home/home.js"></script>
+        <!--Google maps script-->
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4wcYndpXCDGPxRRm5r5yhIJOfoyE8Fi8&callback=initMap"></script>
+
+        <!--Background animation script-->
+<!--        <script type="text/javascript" src="assets/js/home/main.js"></script>
+        <script type="text/javascript" src="assets/js/home/circle.js"></script>-->
+
     </body>
 </html>

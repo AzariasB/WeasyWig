@@ -2,7 +2,6 @@
 /* global _ */
 
 (function () {
-
     var docsFile,
             $dps = $("#doc_parts"),
             $doc = $("#documentation"),

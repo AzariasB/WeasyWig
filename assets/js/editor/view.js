@@ -1,5 +1,5 @@
 
-/* global  _, Weasywig, easyModal, STATES, Mousetrap, Contextmenu */
+/* global  _, Weasywig, easyModal, STATES, Mousetrap, Contextmenu, KeyboardEvent */
 
 var MainView = function () {
     this.currentParent = null;
@@ -7,7 +7,13 @@ var MainView = function () {
     this.currentState = null;
     this.projectName = null;
     this.contextmenuTarget = null;
+    this.dblClickTarget = null;
     this.el = 'body';
+
+    this.regexs = {
+        'text': /^a|h[1-6]|p$/ //Regex of tagname where you can edit text
+    };
+    
     this.componentTemplate = '<div class="panel panel-default">\
 <div class="panel-heading" role="tab" id="panel_heading_<%= index %>">\
  <h4 class="panel-title">\
@@ -25,8 +31,9 @@ var MainView = function () {
         'click #undo_button': "undo",
         'click #add_row': "addRow",
         'submit #search_form': "searchBlock",
-        'click document': 'endContextmenu',
-        'contextmenu document': 'beginContextmenu',
+        'click #root': 'endContextmenu',
+        'contextmenu #root': 'beginContextmenu',
+        'dblclick #root': 'editText',
     };
 
     this.shortcuts = {
@@ -35,7 +42,8 @@ var MainView = function () {
         'mod+right': 'nextState',
         'mod+left': 'previousState',
         'mod+r': 'restart',
-        'mod+h': 'goHome'
+        'mod+h': 'goHome',
+        'enter': 'endContextmenu'
     };
 
     this.init();
@@ -59,6 +67,33 @@ MainView.prototype = {
         }
         if (this.projectName) {
             this.getExistingProject(this.projectName);
+        }
+    },
+    editText: function (event) {
+        var $target = $(event.target);
+        var targetType = $target.prop("tagName").toLowerCase();
+        if (this.regexs.text.test(targetType)) {
+            $change = targetType === 'p' ?
+                    $('<textarea/>', {
+                        text: $target.text(),
+                        class: 'form-control'
+                    }) :
+                    $('<input/>', {
+                        type: 'text',
+                        value: $target.text(),
+                        class: 'mousetrap form-control'
+                    });
+            $target.text("");
+            $target.prepend($change);
+            this.dblClickTarget = $change;
+        }
+    },
+    endTextEdit: function (event) {
+        if (this.dblClickTarget && event.target !== this.dblClickTarget[0]) {
+            var val = this.dblClickTarget.val().replace("\n", "<br/>") || this.dblClickTarget.text().replace("\n", "<br/>") || "Error";
+            this.dblClickTarget.parent().html(val);
+            this.dblClickTarget.remove();
+            this.dblClickTarget = null;
         }
     },
     errorHandle: function () {
@@ -223,11 +258,25 @@ MainView.prototype = {
         var $mainUl = $('#contextMenu');
         this.createUls(options, null, $mainUl);
     },
+    /**
+     * This function handle the end of all the current 'activities'
+     * such as contextmenu or the dblclick edition
+     * 
+     * @param {object} e click event
+     */
     endContextmenu: function (e) {
-        var self = this;
         if (!$(e.target).parents("#contextmenu").length > 0) {
-            self.hideContextmenu();
+            this.hideContextmenu();
             //Hide contextemenu and all childs
+        }
+
+        console.log(e);
+        if (this.dblClickTarget) {
+            if (e instanceof KeyboardEvent) {
+                this.endTextEdit({target : null});
+            } else {
+                this.endTextEdit(e);
+            }
         }
     },
     beginContextmenu: function (event) {
@@ -465,6 +514,12 @@ MainView.prototype = {
             self.addComponent(el, index);
         });
     },
+    /**
+     * 
+     * 
+     * @param {type} comp
+     * @param {type} index
+     */
     addComponent: function (comp, index) {
         var template = _.template(this.componentTemplate);
         var compiled = template({'index': index, 'title': comp.name || ""});
