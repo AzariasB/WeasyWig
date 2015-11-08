@@ -2,7 +2,6 @@
 <html lang="en">
 
     <head>
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,10 +32,15 @@
 
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/editor.css" rel="stylesheet" type="text/css" />
+
+
+        <!-- Hosted version of font-awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     </head>
 
     <body>
-        <div id="wrapper" class="toggled" >
+        <div id="loader"><span class="fa fa-circle-o-notch fa-spin" ></span></div>
+        <div id="wrapper" class="toggled">
             <!-- Sidebar -->
             <div id="sidebar-wrapper">
                 <ul class="sidebar-nav">
@@ -120,7 +124,7 @@
             </div><!-- /.container-fluid -->
         </nav>
 
-        <div class="container-fluid" id="editor_core" >
+        <div class="container-fluid" id="editor_core" hidden="" >
             <!-- The editor core is here -->
             <div class="row" id="root">
                 <div class="mainRoot available"></div>

@@ -10,12 +10,18 @@
     /*
      * 
      */
-    if($(window).scrollTop() === 0){
+    var navMoving = false;
+    if ($(window).scrollTop() === 0) {
         $('object[hidden]').first().removeAttr('hidden');
     }
-    
-    
+
     $('#parallax').css('background-position-y', '0%');
+    $('#map_panel').accordion({
+        'active': false,
+        'collapsible': true,
+        'disabled': true,
+        'heightStyle': "content"
+    });
 
     $(window).scroll(function () {
         //Simple parallax
@@ -25,19 +31,28 @@
         $("#heading_buttons").toggleClass("clone", (scrollPos > height));
         var percent = (scrollPos / $(document).height()) * 100;
         $('#parallax').css('background-position-y', percent + '%');
-        
-        
-        $('object[hidden]').attr('hidden',function(index,attr){
-            if($(this).closest('.row').offset().top <= scrollPos + height){
+
+
+        $('object[hidden]').attr('hidden', function (index, attr) {
+            if ($(this).closest('.row').offset().top <= scrollPos + height) {
                 return null;
-            }else{
+            } else {
                 return "";
             }
         });
 
+        if (!navMoving) {
+            $('#heading_buttons a').each(function () {
+                var target = $(this).attr('href');
+                var tOffset = $(target).offset().top;
+                if (tOffset < scrollPos && tOffset + height/2 > scrollPos) {
+                    resetCurrent($(this));
+                    return false;//Break out of the loop
+                }
+            });
+        }
+
     });
-
-
 
     $('a[id^="remove_"').click(function () {
         if (confirm("Do you really want to delete this project ?")) {
@@ -55,21 +70,28 @@
 
     $('#heading_buttons a').click(function (event) {
         event.preventDefault();
-        $('#heading_buttons a').each(function () {
-            $(this).removeClass('current');
+        resetCurrent($(this));
+        swingTo($($(this).attr('href')));
+    });
+
+    $('#to_top').click(function () {
+        swingTo($('#Projects'));
+        return false;
+    });
+
+    function swingTo($target) {
+        navMoving = true;
+        $('body').animate({
+            scrollTop: $target.offset().top
+        }, 500, 'swing', function () {
+            navMoving = false;
         });
-        $(this).addClass('current');
-        $('body').animate({
-            scrollTop: $($(this).attr('href')).offset().top
-        }, 500, 'swing');
-    });
-    
-    $('#to_top').click(function(){
-        $('body').animate({
-            scrollTop : $('#Projects').offset().top - $('#heading_buttons').height()
-        },500,'swing');
-       return false; 
-    });
+    }
+
+    function resetCurrent($nwCurrent) {
+        $('#heading_buttons a').removeClass('current');
+        $nwCurrent.addClass('current');
+    }
 })();
 
 
@@ -134,7 +156,7 @@ function initMap() {
     });
 
     directionsDisplay.setMap(map);
-    directionsDisplay.setPanel(document.getElementById('map_container'));
+    directionsDisplay.setPanel(document.getElementById('direction'));
 
     //marker.addListener('mouseover', addAnimation);
     marker.addListener('click', function () {
@@ -150,12 +172,34 @@ function initMap() {
         }, function (response, status) {
             if (status === google.maps.DirectionsStatus.OK) {
                 directionsDisplay.setDirections(response);
+                displayPanel(response);
             } else {
                 window.alert('Directions request failed due to ' + status);
             }
         });
     }
 
+    function displayPanel(response) {
+        $('#map_panel').accordion("option", {
+            'active': 0,
+            'disabled': false
+        });
+
+
+        var nwDirection = "From : ";
+        setTimeout(function () {
+            $('table.adp-placemark td.adp-text').each(function (index) {
+                console.log(index);
+                if ($(this).text())
+                    nwDirection += $(this).text();
+                if (index === 0) {
+                    nwDirection += "<br/>To : ";
+                }
+            });
+            $("#map_panel h3").html(nwDirection);
+
+        }, 10);
+    }
 
     google.maps.event.addListener(map, "rightclick", function (event) {
         travelFrom(event.latLng);

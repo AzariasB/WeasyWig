@@ -13,7 +13,7 @@ var MainView = function () {
     this.regexs = {
         'text': /^a|h[1-6]|p$/ //Regex of tagname where you can edit text
     };
-    
+
     this.componentTemplate = '<div class="panel panel-default">\
 <div class="panel-heading" role="tab" id="panel_heading_<%= index %>">\
  <h4 class="panel-title">\
@@ -66,8 +66,15 @@ MainView.prototype = {
             this.setProjectName(window.location.hash.substr(1), false);
         }
         if (this.projectName) {
-            this.getExistingProject(this.projectName);
+            this.getExistingProject(this.projectName);//Let the loader load
+        } else {//Remove the loader and display the core editor
+            this.endLoading();
         }
+    },
+    endLoading: function () {
+        $("#loader").fadeOut(function () {
+            $("#editor_core").removeAttr('hidden');
+        });
     },
     editText: function (event) {
         var $target = $(event.target);
@@ -142,6 +149,12 @@ MainView.prototype = {
         $('#current_mode').text(nwText);
         this.hideMode(btnToHide);
     },
+    /**
+     * Search for one of the available blocks
+     * displayed in the sidebar
+     * 
+     * @param {type} event
+     */
     searchBlock: function (event) {
         event.preventDefault();
         var $target = $("#search_block");
@@ -210,7 +223,13 @@ MainView.prototype = {
         }
     },
     getExistingProject: function (projName) {
-        Weasywig.ajaxGetSave(projName, $("#root"));
+        var self = this;
+        Weasywig.ajaxGetSave(projName, $("#root"), function () {
+            //Wait for pictures to load
+            $.when($("#root").find('img').load()).done(function () {
+                self.endLoading();
+            });
+        });
     },
     /**
      * To set the last modification that was made
@@ -270,10 +289,9 @@ MainView.prototype = {
             //Hide contextemenu and all childs
         }
 
-        console.log(e);
         if (this.dblClickTarget) {
             if (e instanceof KeyboardEvent) {
-                this.endTextEdit({target : null});
+                this.endTextEdit({target: null});
             } else {
                 this.endTextEdit(e);
             }
@@ -286,7 +304,10 @@ MainView.prototype = {
             // Avoid the real one
             event.preventDefault();
             // Show contextmenu if parent is not an 'available' div
-            (!$(event.target).hasClass('available')) && self.showContextmenu(event);
+            if(!$(event.target).hasClass('available')){
+                this.showContextmenu(event);
+                this.removeSidebar();   
+            }
         }
     },
     createUls: function (menus, trigerrer, parent) {
@@ -515,6 +536,7 @@ MainView.prototype = {
         });
     },
     /**
+     * Add every available components to the DOM
      * 
      * 
      * @param {type} comp
@@ -529,7 +551,7 @@ MainView.prototype = {
                     .append($('<a/>')
                             .text(el.name)
                             .attr('href', 'javascript:void(0)')
-                            .click(function (event) {
+                            .click(function () {
                                 Weasywig.askQuestions(el, null);
                             })
                             );

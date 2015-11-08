@@ -6,10 +6,14 @@
             $dps = $("#doc_parts"),
             $doc = $("#documentation"),
             mainDoc = /^#\w+$/,
-            subDoc = /^#\w+\/\w+$/;
+            subDoc = /^#\w+\/\w+$/,
+            docHeight = $(document).height(),
+            $progress,
+            oldHash;
 
-    var oldHash;
-
+    $("#progressbar").progressbar();
+    $progress = $("#progressbar").progressbar('instance');
+    $progress.value(0);
 
     $.getJSON('assets/json/documentation.json', getDocumentation);
     $('body').on('click', 'a[href^="#"]', function () {
@@ -17,6 +21,10 @@
         if (window.location.hash === $(this).attr('href')) {
             $(window).trigger('hashchange');
         }
+    });
+
+    $(window).scroll(function () {
+        $progress.value((($(window).scrollTop() + $(window).height())/docHeight)*100);
     });
 
     function getDocumentation(json) {
@@ -53,11 +61,14 @@
             $doc.find(oldDoc).fadeOut('fast', function () {
                 $doc.find(nwDocId).fadeIn('fast', function () {
                     callback && callback();
+                    docHeight = $(document).height();
+
                 });
             });
         } else {
             $doc.find(nwDocId).fadeIn('fast', function () {
                 callback && callback();
+                docHeight = $(document).height();
             });
         }
     }
@@ -107,7 +118,7 @@
             changeSubDoc(parent, '#' + sonDoc);
         }
     });
-    
+
     $(document).tooltip();
 
 })();

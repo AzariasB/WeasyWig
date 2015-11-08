@@ -1,0 +1,237 @@
+
+/* 
+    Created on : 24 sept. 2015, 19:12:21
+    Author     : Azarias
+*/
+@mixin border-radius($corner,$radius) {
+    border-#{$corner}-radius: $radius;
+    -webkit-border-#{$corner}-radius: $radius;
+    -moz-border-#{$corner}-radius: $radius;
+    -ms-borde-#{$corner}-radius: $radius;
+    -o-border-#{$corner}-radius: $radius;
+}
+
+
+$colorSlide1 : #293540;
+$colorSlide2  : #79BDE0;
+$background-image : '../images/home/pencil2.jpg';
+
+html,body{
+    height: 100vh;
+    max-height: 100vh;
+}
+
+
+body .adp,
+body .adp table{
+    color: white;
+}
+
+body .adp .adp-placemark{
+    color: black;
+}
+
+#parallax{
+    z-index: -1;
+    position: fixed;
+    min-height: 100vh;
+    width: 100vw;
+    background : url($background-image) center 0 no-repeat content-box;
+}
+
+#heading_buttons{
+    border-bottom : solid 1px white;
+    background-color: rgb(18,18,18);
+    left : 0;
+    position: absolute;
+    z-index: 999;
+    height: 50px;
+    opacity: 0.5;
+    transition: all ease-in-out 500ms;
+
+    a{
+        text-decoration: none;
+        color: white;
+
+        h4{
+            transition: all ease-in-out 100ms;
+            border-bottom: 0px solid white;
+            padding-bottom: 0px;
+        }
+
+        &:hover h4,
+            &.current h4{
+            padding-bottom: 4px;
+            border-bottom-width: 2px;
+        }
+    }
+
+    &.clone{
+        position: fixed;
+        top: 0;
+    }
+
+    &:hover{
+        opacity: 1;
+    }
+}
+
+img{
+    padding: 10px;
+}
+
+.fill{
+    height: 90%;
+    min-height: 55vh;
+}
+
+#map{
+    height: 90%;
+}
+
+#main_title{
+    height: 100vh;
+}
+.transparent{
+    background: $colorSlide1;
+    color : white;
+}
+
+.white{
+    background: $colorSlide2;
+
+}
+
+#parts   > .white{
+    border-top: 1px solid black;
+    margin-top: 50px;
+}
+
+#parts > .white ~ .white{
+    border :none;
+    margin-top: 0px;
+}
+
+.transparent,
+.white{
+    padding: 50px 10px 40px 10px;
+    min-height : 100vh;
+}
+
+#main_title object{
+    top: 50vh;
+    margin-top: 35vh;
+    font-size: 8em;
+}
+
+div.list-group li.btn-group{
+    padding: 0px;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.btn-left{
+    width: calc(60% - 1px );
+    @include border-radius("top-left",5px);
+    @include border-radius("bottom-left",5px);
+    border-right: none;
+}
+
+.btn-right{
+    border-left: none;
+    width: calc(40% - 2px );
+    @include border-radius("top-right",5px);
+    @include border-radius("bottom-right",5px);
+}
+
+#new_project{
+    margin-bottom : 10px;
+    @include border-radius("",5px);
+}
+
+footer{
+    padding : 50px 10px 50px 10px;
+    color: black;
+    border-top: 1px solid black;
+    opacity: 1;
+    font-size: 1.2em;
+}
+
+.gallery .img-responsive{
+    display: inline-block;
+    margin-right: 0px;
+    height: 100px;
+}
+
+#smooth_animation{
+    position: absolute;
+    top: 0;
+    left : 0;
+    width: 100%;
+}
+
+.big-glyphicon{
+    font-size: 9em;
+    color: rgb(240,158,0);
+    text-shadow: -4px 0 white, 0 4px white, 4px 0 white, 0 -4px white;
+}
+
+/* Turn on custom 8px wide scrollbar */
+::-webkit-scrollbar {
+    width: 8px; 
+    /* This is more usable for users trying to click it. */
+    background-color: rgba(0,0,0,0);
+    -webkit-border-radius: 100px;
+
+    /* hover effect for both scrollbar area, and scrollbar 'thumb' */
+    &:hover{
+        background-color: rgba(0, 0, 0, 0.09);
+    }
+}
+
+::-webkit-scrollbar-track-piece{
+    background-color: rgba(255,255,255,1);
+} 
+
+/* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
+::-webkit-scrollbar-thumb:vertical {
+    background: rgba(0,0,0,0.5);
+    -webkit-border-radius: 100px;
+
+    &:active{
+        background: rgba(0,0,0,0.61); /* Some darker color when you click it */
+        -webkit-border-radius: 100px;
+    }
+}
+
+
+#to_top a{
+    position: absolute;
+    text-decoration: none;
+
+    p{
+        margin : 0;
+    }
+
+    &:hover i{
+        animation: shake 0.35s ease infinite alternate; 
+    }
+}
+
+//--cross bouncing
+@-webkit-keyframes shake {
+    from {top : 0px;}
+    to {top : 10px;}
+}
+@-moz-keyframes shake {
+    from {top : 0px;}
+    to {top : 10px;}
+}
+@-o-keyframes shake {
+    from {top : 0px;}
+    to {top : 10px;}
+}
+@keyframes shake {
+    from {top : 0px;}
+    to {top : 10px;}
+}

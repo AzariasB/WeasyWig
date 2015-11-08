@@ -1,0 +1,395 @@
+
+
+/*
+* All style that applies to the new added elements
+*/
+
+.available{
+    -moz-box-shadow: inset 0px 0px 115px 10px #656565;
+    -webkit-box-shadow: inset 0px 0px 115px 10px #656565;
+    -o-box-shadow: inset 0px 0px 115px 10px #656565;
+    box-shadow: inset 0px 0px 115px 10px #656565;
+
+    cursor: pointer;
+    border: dashed 1px #999999;
+    height: 100%;
+    min-height: 100px;
+    font-size: 20em;
+    text-align: center;
+    z-index: 1;
+    // transition: all ease 0.5s;
+    background-color: rgba(200,200,200,0.5);
+    background-image: url('../images/editor/plus.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto 70%;
+}
+
+.available:hover{
+    -webkit-animation: bounce 1s infinite;
+    -moz-animation:    bounce 1s infinite;
+    -o-animation:      bounce 1s infinite;
+    animation:         bounce 1s infinite;
+}
+
+[class*="col-xs"].available:empty{
+    min-height: 200px;
+}
+
+.taken{
+    height: auto;
+    overflow: auto;
+}
+
+
+.parent{
+    height: auto;
+    width: 100%;
+}
+
+.easyModal-input.form-control{
+    margin : 15px auto 15px auto;
+}
+
+.easyModal-input.form-control.easyModal-input-text{
+    width: 100%;
+}
+
+textarea.easyModal-input.form-control{
+    width: 90%;
+    resize: vertical;
+}
+
+.tiny-number{
+    padding: 2px;
+}
+
+.tiny-number>.easyModal-input.form-control{
+    margin: 0px;
+    width: 100%;
+    padding: 5px;
+}
+
+span.input-group-btn{
+    text-indent: 0px;
+}
+
+
+//Left wrapper
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper .panel,
+#wrapper .panel-default>.panel-heading{
+    background: #222222;
+    border: none;
+}
+
+#wrapper .panel-heading{
+    padding: 0px;
+}
+
+#wrapper .panel-heading a{
+    padding: 10px;
+}
+
+#wrapper .panel-heading i{
+    float: right;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    margin-bottom: -51px;
+    border-right: 1px solid #121212;
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: calc(100% - 50px);
+    margin-left: -250px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background: #222222;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#sidebar-wrapper::-webkit-scrollbar{
+    display: none;
+}
+
+#wrapper ul{
+    border-top: 1px solid #333;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #aaa;
+    font-weight: bold;
+}
+
+.sidebar-nav li h3{
+    display: block;
+    color: #aaa;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #aaa;
+}
+
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+
+#menu-toggle{
+    float: right;
+    position: absolute;
+    right:  10px;
+    top: 10px;
+}
+
+#root,.mainRoot{
+    min-height: 80vh;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#root{
+    padding: 10px;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
+.editor-message {
+    top: 0;
+    z-index: 99999;
+    left: 38%;
+    margin-left: auto;
+    margin-right: auto;
+    position: fixed;
+    background-color: white;
+    color: #999999;
+    border-left: 3px solid transparent;
+    border-bottom: 1px solid #222222;
+    border-right: 1px solid #222222;
+    border-radius: 3px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    height: auto;
+    width: auto;
+    padding: 0 20px 0 17px;
+    opacity: 0;
+    transition: all ease-in-out 200ms;
+}
+.editor-message.show {
+    height: 50px;
+    opacity: 1;
+    padding: 10px 20px 10px 17px;
+}
+.editor-message.success {
+    border-left-color: #2ecc71;
+}
+.editor-message.error {
+    border-left-color: #e74c3c;
+}
+
+.has-error .easyModal-input{
+    animation-name: shake;
+    animation-duration: 200ms;
+    animation-iteration-count: 4;
+}
+
+//Animations
+
+//--shaking easyModalinput
+@-webkit-keyframes shake {
+    0%   { margin-right: 10px; margin-right: 0px; }
+    50%   { margin-left: 10px; margin-right: 0px; }
+    100% { margin-left: 0px;margin-right: 0px}
+}
+@-moz-keyframes shake {
+    0%   { margin-right: 10px; margin-right: 0px; }
+    50%   { margin-left: 10px; margin-right: 0px; }
+    100% { margin-left: 0px;margin-right: 0px}
+}
+@-o-keyframes shake {
+    0%   { margin-right: 10px; margin-right: 0px; }
+    50%   { margin-left: 10px; margin-right: 0px; }
+    100% { margin-left: 0px;margin-right: 0px}
+}
+@keyframes shake {
+    0%   { margin-right: 10px; margin-right: 0px; }
+    50%   { margin-left: 10px; margin-right: 0px; }
+    100% { margin-left: 0px;margin-right: 0px}
+}
+
+//--cross bouncing
+@-webkit-keyframes bounce {
+    0%   { background-size: auto 75%;background-color: rgba(100,100,100,0.5);}
+    50%   { background-size: auto 80%;background-color: rgba(150,150,150,0.5); }
+    100% { background-size: auto 75%; background-color: rgba(100,100,100,0.5);}
+}
+@-moz-keyframes bounce {
+    0%   { background-size: auto 75%;background-color: rgba(100,100,100,0.5);}
+    50%   { background-size: auto 80%;background-color: rgba(150,150,150,0.5); }
+    100% { background-size: auto 75%; background-color: rgba(100,100,100,0.5);}
+}
+@-o-keyframes bounce {
+    0%   { background-size: auto 75%;background-color: rgba(100,100,100,0.5);}
+    50%   { background-size: auto 80%;background-color: rgba(150,150,150,0.5); }
+    100% { background-size: auto 75%; background-color: rgba(100,100,100,0.5);}
+}
+@keyframes bounce {
+    0%   { background-size: auto 75%;background-color: rgba(100,100,100,0.5);}
+    50%   { background-size: auto 80%;background-color: rgba(150,150,150,0.5); }
+    100% { background-size: auto 75%; background-color: rgba(100,100,100,0.5);}
+}
+
+//Others little features
+#title{
+    border-bottom: 1px solid #999999;
+    background-color: #dddddd;
+}
+
+#editor_core{
+    margin-top: 50px;
+}
+
+#current_mode{
+    cursor: default;
+}
+
+.found{
+    font-style: italic;
+}
+
+#wrapper .panel-collapse .found a{
+    color: #fff;
+}
+
+#contextMenu,.contextmenu{
+    display: none;
+    z-index: 1000;
+    position: absolute;
+    overflow: hidden;
+    border: 1px solid #CCC;
+    white-space: nowrap;
+    font-family: sans-serif;
+    background: #FFF;
+    color: #333;
+    border-radius: 5px;
+}
+
+#contextMenu li,.contextmenu li {
+    padding: 8px 12px;
+    min-width: 100px;
+    cursor: pointer;
+}
+
+#contextMenu li .glyphicon,
+.contextmenu li .glyphicon{
+    float: right;
+}
+
+#contextMenu li:hover,.contextmenu li:hover {
+    background-color: #afd9ee;
+}
+
+.ui-front{
+    z-index: 1000;
+}
+
+.qtv{
+    color : #800000;
+    font-weight: bold;
+}
+
+.gray-bkg{
+    background-color: #eee;
+}
