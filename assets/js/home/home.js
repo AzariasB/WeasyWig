@@ -125,7 +125,7 @@ function initMap() {
     });
 
 
-    var contentString = '<div id="content">' +
+    var contentString = '<div id="content" style="color : black;" >' +
             '<div id="siteNotice">' +
             '</div>' +
             '<h1 id="firstHeading" class="firstHeading">WeasyiWig</h1>' +
@@ -141,7 +141,7 @@ function initMap() {
             '</p><p>However, if the company wants to add their own components for some reasons, the company developped an API ' +
             'that is well documented and is really easy to use. The only dependencie of the application is jquery and jquery-ui</p>' +
             '<p> Weasywig, copyright 2015 ' +
-            'Montmélian - France.</p>' +
+            'Montmélian - France.</p>' + '<img width="100" class="img-responsive" src="assets/images/home/api.png" />' +
             '</div>' +
             '</div>';
 

@@ -5,8 +5,8 @@
 
 $(function () {
     $('body').on('click', 'img', function () {
-        if ($(this).parent().hasClass('no-lightbox') && !$(this).hasClass('over-picture')) {
-            var divSrc = $(this).attr("aria-describedby")
+        if (!$(this).hasClass('over-picture')) {
+            var divSrc = $(this).attr("aria-describedby");
             var imgTitle = $(this).attr("title") || $("#" + divSrc).text();
             var $img = $('<img/>')
                     .attr({

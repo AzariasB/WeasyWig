@@ -23,8 +23,37 @@
         }
     });
 
+    function changeDarkness(e, ui) {
+        var $t = $("body");
+        var colVal = ui.value;
+        var bgVal = 255 -ui.value;
+        var color = 'rgb(' + colVal + ',' + colVal + ',' + colVal + ')';
+        var background = 'rgb(' + bgVal + ',' + bgVal + ',' + bgVal + ');';
+        $t.css({
+            'color' : color,
+            'background-color' : background
+        });
+    }
+
+    function changeTextSize(e, ui) {
+        console.log(ui.value + 100);
+        $("#documentation").css('font-size', ui.value + 100 + '%');
+    }
+
+    $("#range_dark").slider({
+        'max': 255,
+        'min': 0,
+        'slide': changeDarkness
+    });
+
+    $("#range_size").slider({
+        'max': 100,
+        'min': 0,
+        'slide': changeTextSize
+    });
+
     $(window).scroll(function () {
-        $progress.value((($(window).scrollTop() + $(window).height())/docHeight)*100);
+        $progress.value((($(window).scrollTop()) / (docHeight - $(window).height())) * (100));
     });
 
     function getDocumentation(json) {

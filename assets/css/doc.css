@@ -12,6 +12,10 @@ and open the template in the editor.
     margin-top: 51px;
 }
 
+.range{
+    margin : 5px;
+}
+
 #progressbar{
     position: fixed;
     bottom: 0;
@@ -20,10 +24,18 @@ and open the template in the editor.
     max-height: 10px;
 }
 
+body .list-group{
+    color:  black;
+}
+
+.list-group-item:nth-child(2n){
+    background-color: #ddd;
+}
+
 footer{
     border-top: #333 1px solid;
     padding-top: 50px;
-    background-color: #eee
+
 }
 
 @media only screen and (min-width : 768px) {
