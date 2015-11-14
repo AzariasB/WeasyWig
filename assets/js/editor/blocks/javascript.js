@@ -38,9 +38,9 @@
                                         navTmpl = _.template('<li role="presentation" class="<% first ? print("active") : print(""); %>"><a href="#<%= ref %>" aria-controls="home" role="tab" data-toggle="tab"><%= title %></a></li>'),
                                         panTmpl = _.template('<div role="tabpanel" class="tab-pane fade <% first ? print("in active") : print(""); %>" id="<%= ref %>"><div class="available"></div></div>');
                                 _.each(texts, function (input) {
-                                    console.log($(input).val.replace(new RegExp('\\s','g'),'_'));
-                                    titles.push($(input).val().replace(new RegExp('\\s','g')),'_');
+                                    titles.push($(input).val().replace(new RegExp('\\s','g'),'_'));
                                 });
+                                console.log(titles);
                                 var $ul = $('<ul/>', {'class': 'nav nav-tabs', 'role': 'tablist'});
                                 var $content = $('<div/>').addClass('tab-content');
                                 _.each(titles, function (title, index) {
